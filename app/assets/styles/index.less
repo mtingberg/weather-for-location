@@ -1,0 +1,71 @@
+@import (inline) '../../../node_modules/normalize.css/normalize.css';
+@import "palette.less";
+@import "variables.less";
+@import "mixins.less";
+@import "../../current-weather/current-weather";
+
+* {
+    box-sizing: border-box
+}
+
+img {
+    border: none;
+}
+
+p {
+    color: @standard-text-color;
+    font-size: @standard-text-size;
+}
+
+a {
+    text-decoration: none;
+    color: @standard-link-color;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &:visited {
+        color: @standard-link-color;
+    }
+}
+
+body {
+    margin: 0 auto;
+    max-width: 80vw;
+}
+
+// Use px units for old IE versions.
+.browser-upgrade {
+    margin: 40px;
+    color: #666;
+    font-size: 18px;
+
+    a {
+        text-decoration: underline;
+    }
+}
+
+.wrapper {
+    margin: 0 2rem;
+
+    h1 {
+        margin: 1.5rem 0 2rem 0;
+    }
+}
+
+
+@media all and (max-width: 599px) {
+}
+
+@media all and (min-width: 600px) and (max-width: 1000px) {
+    .wrapper {
+        margin: 0;
+    }
+}
+
+@media all and (min-width: 1001px) {
+    .wrapper {
+        margin: 0;
+    }
+}
