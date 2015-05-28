@@ -10,6 +10,9 @@ angular.module('app', [
     'ngResource'
 ]);
 
+require('./forecast-factory');
+angular.module('app').$inject = ['forecastFactory'];
+
 require('./current-weather/current-weather-controller');
 
 
