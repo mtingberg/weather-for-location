@@ -1,24 +1,15 @@
-<div class="weather card">
-    <div class="hidden current-info">
-        <img src="" class="weather-icon"/>
+<section class="weather card">
+    <div class="" ng-controller="CurrentWeatherCtrl">
+        <i class="wi {{::forecast.weatherIcon}} weather-icon"></i>
 
         <div class="location-container">
-            <div class="location-city">
-            </div>
-            <div class="location-country">
-            </div>
+            <div class="location-city">{{::forecast.city}}</div>
+            <div class="location-country">{{::forecast.country}}</div>
         </div>
-        <div class="temp-container">
-            <div class="current-temp">
-            </div>
-            <div class="type">
-            </div>
-        </div>
-        <a class="forecast-link clearfix"></a>
-    </div>
-    <div class="initial default-info">
-        <img src="" class="weather-icon"/>
 
-        <p class="initial message"></p>
+        <div class="temp-container">
+            <div class="current-temp">{{::forecast.currentTemperature}}</div>
+            <div class="temp-unit">{{::forecast.temperatureUnit}}</div>
+        </div>
     </div>
-</div>
+</section>
