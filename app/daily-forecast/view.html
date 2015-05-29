@@ -1,0 +1,21 @@
+<div ng-controller="DailyForecastCtrl">
+    <section class="weather card">
+        <div class="location-container">
+            <div class="location-city">{{::forecast.city}}</div>
+            <div class="location-country">{{::forecast.country}}</div>
+        </div>
+    </section>
+
+    <section class="weather card" ng-repeat="day in forecast.list">
+        <i class="wi {{::day.weatherIcon}} weather-icon"></i>
+
+        <div class="forecast-date-container">
+            <div class="forecast-date">{{::day.forecastDate}}</div>
+        </div>
+
+        <div class="temp-container">
+            <div class="current-temp">{{::day.dayTemperature}}</div>
+            <div class="temp-unit">{{::day.temperatureUnit}}</div>
+        </div>
+    </section>
+</div>
