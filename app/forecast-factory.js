@@ -1,21 +1,23 @@
 'use strict';
 
-var angular = require('angular');
+var angular = require('angular'),
+    Buffer = require('buffer/').Buffer;
 
 angular.module('app').factory('forecastFactory', function ($http) {
 
-    var OPEN_WEATHER_MAP_API_KEY = 'f8dc9e2b6acd93f0a57b4abf0e86ecad',
-        OPEN_WEATHER_MAP_BASE_URL = 'http://api.openweathermap.org/data/2.5/weather';
+    var OPEN_WEATHER_MAP_APP_ID = new Buffer('ZjhkYzllMmI2YWNkOTNmMGE1N2I0YWJmMGU4NmVjYWQ=', 'base64').toString('ascii'),
+        CURRENT_FORECAST_BASE_URL = 'http://api.openweathermap.org/data/2.5/weather',
+        DAILY_FORECAST_BASE_URL = 'http://api.openweathermap.org/data/2.5/forecast/daily';
 
     return {
-        getForecastForPosition: function (position) {
+        getCurrentWeatherForPosition: function (position) {
             return new Promise(function (resolve, reject) {
-                $http.get(OPEN_WEATHER_MAP_BASE_URL, {
+                $http.get(CURRENT_FORECAST_BASE_URL, {
                     params: {
                         lat: position.latitude,
                         lon: position.longitude,
                         units: 'metric',
-                        APPID: OPEN_WEATHER_MAP_API_KEY
+                        APPID: OPEN_WEATHER_MAP_APP_ID
                     },
                     responseType: 'json',
                     timeout: 500
@@ -25,22 +27,47 @@ angular.module('app').factory('forecastFactory', function ($http) {
                     })
 
                     .error(function (data, status) {
-                        console.error('$http.get failed, status:' + status);
                         reject('$http.get failed, status:' + status);
                     });
             })
 
                 .then(function (data) {
                     return data;
-                    /*
-                     self.storeWeatherDataInCache(data);
-                     self.applyCachedWeatherData();
-                     */
                 }, function (message) {
                     console.warn(message);
-                    /*
-                     self.applyCachedWeatherData();
-                     */
+                })
+
+                .catch(function (message) {
+                    console.error(message);
+                });
+        },
+        getDailyForecastForPosition: function (position) {
+            return new Promise(function (resolve, reject) {
+                $http.get(DAILY_FORECAST_BASE_URL, {
+                    params: {
+                        lat: position.latitude,
+                        lon: position.longitude,
+                        units: 'metric',
+                        cnt: 5,
+                        mode: 'json',
+                        APPID: OPEN_WEATHER_MAP_APP_ID
+                    },
+                    responseType: 'json',
+                    timeout: 500
+                })
+                    .success(function (data) {
+                        resolve(data);
+                    })
+
+                    .error(function (data, status) {
+                        reject('$http.get failed, status:' + status);
+                    });
+            })
+
+                .then(function (data) {
+                    return data;
+                }, function (message) {
+                    console.warn(message);
                 })
 
                 .catch(function (message) {
