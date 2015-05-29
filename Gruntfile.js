@@ -30,6 +30,11 @@ module.exports = function (grunt) {
         // ----------------------------
 
         browserify: {
+            options: {
+                transform: [
+                    ['babelify', { 'stage': 2 }]
+                ]
+            },
             build: {
                 files: {
                     '<%= config.dest_app_scripts_dir %>/bundle.js': ['<%= config.src_dir %>/index.js']
@@ -297,10 +302,10 @@ module.exports = function (grunt) {
         'imagemin',
         'cssmin',
         'browserify:release',
+        'ngAnnotate',
         'uglify',
         'filerev',
         'usemin',
-        'ngAnnotate',
         'htmlmin'
     ]);
 
