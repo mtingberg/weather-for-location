@@ -1,4 +1,4 @@
-<section class="weather card">
+<section class="current-weather">
     <div class="" ng-controller="CurrentWeatherCtrl">
         <i class="wi {{::forecast.weatherIcon}} weather-icon"></i>
 
@@ -9,7 +9,7 @@
 
         <div class="temp-container">
             <div class="current-temp">{{::forecast.currentTemperature}}</div>
-            <div class="temp-unit">{{::forecast.temperatureUnit}}</div>
+            <div class="temp-unit">&deg;{{::forecast.temperatureUnit}}</div>
         </div>
     </div>
 </section>

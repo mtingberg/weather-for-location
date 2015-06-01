@@ -5,7 +5,7 @@ var angular = require('angular'),
     i18nIsoCountries = require('i18n-iso-countries');
 
 
-angular.module('app').controller('CurrentWeatherCtrl', function ($scope, forecastFactory) {
+module.exports = angular.module('app').controller('CurrentWeatherCtrl', function ($scope, forecastFactory) {
     new Promise(function (resolve, reject) {
 
         function success(position) {
