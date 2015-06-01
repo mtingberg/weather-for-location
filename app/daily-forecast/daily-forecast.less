@@ -1,61 +1,85 @@
-.weather-icon {
-    display: inline-block;
-    margin: 0 0.9rem 0 0;
-    vertical-align: top;
-    opacity: 0.4;
-    font-size: 6.4rem;
-}
+.daily-forecast-container {
+    background: #fafafa;
 
+    .location-container {
+        padding: 1.5rem 0 2rem 0.7rem;
 
-.forecast-date-container {
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 4.9rem 0 0;
-}
+        .location-city {
+            display: block;
+            font-size: 2.3rem;
+            color: #333;
+            vertical-align: top;
+        }
 
-.location-city {
-    display: block;
-    font-size: 2.3rem;
-    color: #333;
-    vertical-align: top;
-    margin: 0.7rem 0 0 0;
-}
+        .location-country {
+            display: block;
+            font-size: 1.3rem;
+            color: #333;
+            vertical-align: top;
+        }
+    }
 
-.forecast-date {
-    display: block;
-    font-size: 2.3rem;
-    color: #333;
-    vertical-align: top;
-    margin: 0.7rem 0 0 0;
-}
+    .daily-container {
+        display: flex;
+        flex-flow: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        align-content: flex-start;
 
-.location-country {
-    display: block;
-    font-size: 1.3rem;
-    color: #333;
-    vertical-align: top;
-}
+        background: #ddd;
 
-.temp-container {
-    display: inline-block;
-    margin: 1rem 0 0 0;
-}
+        .daily-item {
+            flex: 1 1 auto;
 
-.current-temp {
-    display: inline-block;
-    font-size: 5.3rem;
-    color: #000;
-    line-height: 4.3rem;
-    direction: ltr;
-    margin: 0 1.1rem 0 0;
-    letter-spacing: -0.08em;
-}
+            margin: 0.6rem 0.6rem 0.6rem 0;
+            padding: 0.6rem;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+            background: #FFF;
 
-.temp-unit {
-    display: inline-block;
-    font-size: 2.7rem;
-    color: #000;
-    vertical-align: top;
-    margin: 0 0 0 -0.5rem;
-    line-height: 2.2rem;
+            .forecast-date-container {
+                display: inline-block;
+                vertical-align: top;
+                margin: 0;
+
+                .forecast-date {
+                    display: block;
+                    font-size: 1.3rem;
+                    color: #333;
+                    margin: 0.2rem;
+                }
+            }
+
+            .weather-icon {
+                display: block;
+                margin: 1.1rem 0.2rem 1.5rem 0.2rem;
+                vertical-align: top;
+                opacity: 0.4;
+                font-size: 2rem;
+            }
+
+            .temp-container {
+                display: inline-block;
+                margin: 0;
+
+                .current-temp {
+                    display: inline-block;
+                    font-size: 2rem;
+                    line-height: 1.9rem;
+                    color: #000;
+                }
+
+                .temp-unit {
+                    display: inline-block;
+                    font-size: 1rem;
+                    vertical-align: top;
+                    color: #000;
+                }
+
+            }
+
+            &:first-child {
+                margin-left: 0.6rem;
+            }
+        }
+    }
 }

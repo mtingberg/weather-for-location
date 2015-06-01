@@ -3,10 +3,11 @@
 var angular = require('angular'),
     lookupWeatherIcon = require('../lookup-weather-icon'),
     unixTimestamp = require('unix-timestamp'),
-    moment = require('moment');
+    moment = require('moment'),
+    i18nIsoCountries = require('i18n-iso-countries');
 
 
-angular.module('app').controller('DailyForecastCtrl', function ($scope, forecastFactory) {
+module.exports = angular.module('app').controller('DailyForecastCtrl', function ($scope, forecastFactory) {
     new Promise(function (resolve, reject) {
 
         function success(position) {
@@ -25,11 +26,11 @@ angular.module('app').controller('DailyForecastCtrl', function ($scope, forecast
                 forecast = {};
 
             forecast.city = data.city.name;
-            forecast.country = data.city.country;
+            forecast.country = i18nIsoCountries.getName(data.city.country, 'en');
 
             data.list.forEach(function (elem) {
                 list.push({
-                    forecastDate: moment(unixTimestamp.toDate(elem.dt)).format('D[/]M'),
+                    forecastDate: moment(unixTimestamp.toDate(elem.dt)).format('ddd D[/]M'),
                     weatherIcon: lookupWeatherIcon(elem.weather[0].icon),
                     dayTemperature: Math.round(parseInt(elem.temp.day, 10)),
                     temperatureUnit: 'C'
