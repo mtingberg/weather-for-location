@@ -10,6 +10,11 @@
     box-sizing: border-box
 }
 
+@font-face {
+    font-family: 'Montserrat Regular';
+    src: url('/assets/fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
 img {
     border: none;
 }
@@ -35,6 +40,31 @@ a {
 body {
     margin: 0 auto;
     max-width: 80vw;
+}
+
+.header-nav {
+    margin: 0;
+    color: #fff;
+
+    ul {
+        margin: 0 0 2rem 0;
+        padding: 0;
+
+        li {
+            display: inline-block;
+            margin: 0 1.4rem 0 0;
+            font-family: 'Montserrat Regular', 'sans-serif';
+            text-transform: uppercase;
+
+            a {
+                color: #7a7a7a;
+
+                &:visited {
+                    color: #7a7a7a;
+                }
+            }
+        }
+    }
 }
 
 // Use px units for old IE versions.
