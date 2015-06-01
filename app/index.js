@@ -11,8 +11,6 @@ angular.module('app', [
 ]);
 
 require('./forecast-factory');
-angular.module('app').$inject = ['forecastFactory'];
-
 require('./current-weather/current-weather-controller');
 require('./daily-forecast/daily-forecast-controller');
 
