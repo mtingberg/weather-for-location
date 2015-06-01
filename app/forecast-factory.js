@@ -3,7 +3,7 @@
 var angular = require('angular'),
     Buffer = require('buffer/').Buffer;
 
-angular.module('app').factory('forecastFactory', function ($http) {
+module.exports = angular.module('app').factory('forecastFactory', function ($http) {
 
     var OPEN_WEATHER_MAP_APP_ID = new Buffer('ZjhkYzllMmI2YWNkOTNmMGE1N2I0YWJmMGU4NmVjYWQ=', 'base64').toString('ascii'),
         CURRENT_FORECAST_BASE_URL = 'http://api.openweathermap.org/data/2.5/weather',
