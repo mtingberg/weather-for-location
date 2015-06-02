@@ -10,6 +10,7 @@ angular.module('app', [
     'ngResource'
 ]);
 
+require('./common-controllers/international-locations-controller');
 require('./forecast-factory');
 require('./current-weather/current-weather-controller');
 require('./daily-forecast/daily-forecast-controller');

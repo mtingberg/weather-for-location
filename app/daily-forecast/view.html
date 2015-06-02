@@ -1,8 +1,16 @@
 <div class="daily-forecast-container" ng-controller="DailyForecastCtrl">
-    <section >
-        <div class="location-container">
+    <section class="location-container">
+        <div class="current-location-container">
             <div class="location-city">{{::forecast.city}}</div>
             <div class="location-country">{{::forecast.country}}</div>
+        </div>
+
+        <div class="international-locations-container" ng-controller="InternationalLocationsCtrl">
+            <select class="locations-dropdown">
+                <option ng-repeat="location in locations | orderBy:'name'"
+                        value="{{::location.name}}">{{::location.name}}
+                </option>
+            </select>
         </div>
     </section>
 

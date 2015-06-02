@@ -2,20 +2,43 @@
     background: #fafafa;
 
     .location-container {
-        padding: 1.5rem 0 2rem 0.7rem;
+        display: flex;
+        flex-flow: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        align-content: flex-start;
 
-        .location-city {
-            display: block;
-            font-size: 2.3rem;
-            color: #333;
-            vertical-align: top;
+        padding-top: 1.5rem;
+
+        .current-location-container {
+            flex: 1 1 auto;
+
+            padding: 0 0 2rem 0.7rem;
+
+            .location-city {
+                font-size: 2.3rem;
+                color: #333;
+                vertical-align: top;
+            }
+
+            .location-country {
+                display: block;
+                font-size: 1.3rem;
+                color: #333;
+                vertical-align: top;
+            }
         }
 
-        .location-country {
-            display: block;
-            font-size: 1.3rem;
-            color: #333;
-            vertical-align: top;
+        .international-locations-container {
+            flex: 1 1 auto;
+
+            padding: 0 0 2rem 0.7rem;
+
+            .locations-dropdown {
+                font-size: 1rem;
+                color: #333;
+                vertical-align: top;
+            }
         }
     }
 
