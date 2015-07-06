@@ -5,46 +5,96 @@ var angular = require('angular'),
     isDayTime = require('../is-day-time'),
     unixTimestamp = require('unix-timestamp'),
     moment = require('moment'),
-    i18nIsoCountries = require('i18n-iso-countries');
+    i18nIsoCountries = require('i18n-iso-countries'),
+    getPredefinedLocations = require('../get-predefined-locations');
 
 
-module.exports = angular.module('app').controller('DailyForecastCtrl', function ($scope, forecastFactory) {
-    new Promise(function (resolve, reject) {
+module.exports = angular.module('app').controller('DailyForecastCtrl',
+    function ($scope, $q, forecastFactory, locationFactory) {
 
-        function success(position) {
-            resolve({latitude: position.coords.latitude, longitude: position.coords.longitude});
-        }
+    var predefinedLocations = getPredefinedLocations();
 
-        function error() {
-            reject('Unable to retrieve location');
-        }
+    $scope.props = {
+        locations: predefinedLocations,
+        selected: predefinedLocations[0]
+    };
 
-        navigator.geolocation.getCurrentPosition(success, error);
-
-    }).then(function (position) {
-        forecastFactory.getDailyForecastForPosition(position).then(function (data) {
-            var list = [],
-                forecast = {},
-                weatherConditionCode = '',
-                isDayTimeAtLocation = '';
-
-            forecast.city = data.city.name;
-            forecast.country = i18nIsoCountries.getName(data.city.country, 'en');
-
-            data.list.forEach(function (elem) {
-                weatherConditionCode = elem.weather[0].id;
-                isDayTimeAtLocation = isDayTime(elem.weather[0].icon);
-
-                list.push({
-                    forecastDate: moment(unixTimestamp.toDate(elem.dt)).format('ddd D[/]M'),
-                    weatherIcon: lookupWeatherIcon(weatherConditionCode, isDayTimeAtLocation),
-                    dayTemperature: Math.round(parseInt(elem.temp.day, 10)),
-                    temperatureUnit: 'C'
-                });
-            });
-            forecast.list = list;
-
-            $scope.forecast = forecast;
+    // will be called when selecting a new location in (predefined locations) drop-down menu.
+    $scope.props.getSelectedLocation = function (location) {
+        getForecastForLocation(location).then(function (formattedForecast) {
+            $scope.forecast = formattedForecast;
         });
-    });
+    };
+
+    (function initializeView() {
+        $scope.props.getSelectedLocation($scope.props.selected);
+    })();
+
+
+    function getForecastForLocation(location) {
+        var locationPromise,
+            forecastPromise;
+
+        if (location.id === -1) {
+            locationPromise = locationFactory.getCurrentPosition();
+        } else {
+            locationPromise = getPredefinedLocationPromise(location);
+        }
+
+        forecastPromise = locationPromise.then(function (position) {
+            return forecastFactory.getDailyForecastForPosition(position);
+        }, function (reason) {
+            console.log('Failed: ', reason);
+        });
+
+        return forecastPromise.then(function (forecast) {
+            return formatForecastResult(forecast);
+        }, function (reason) {
+            console.log('Failed: ', reason);
+        });
+    }
+
+    function getPredefinedLocationPromise(position) {
+        return $q(function (resolve) {
+            resolve({latitude: position.coord.lat, longitude: position.coord.lon});
+        });
+    }
+
+    function formatDate(timestamp) {
+        var forecastDate = unixTimestamp.toDate(timestamp);
+
+        if (moment().isSame(forecastDate, 'day')) {
+            return 'Today';
+        } else {
+            return moment(forecastDate).format('ddd D[/]M');
+        }
+    }
+
+    function formatForecastResult(forecast) {
+        var dailyForecasts,
+            location = {},
+            weatherConditionCode = '',
+            isDayTimeAtLocation = '';
+
+        location.city = forecast.city.name;
+        location.country = i18nIsoCountries.getName(forecast.city.country, 'en');
+
+        dailyForecasts = forecast.list.map(function (elem) {
+            weatherConditionCode = elem.weather[0].id;
+            isDayTimeAtLocation = isDayTime(elem.weather[0].icon);
+
+            return {
+                forecastDate: formatDate(elem.dt),
+                weatherIcon: lookupWeatherIcon(weatherConditionCode, isDayTimeAtLocation),
+                dayTemperature: Math.round(parseInt(elem.temp.day, 10)),
+                temperatureUnit: 'C'
+            };
+        });
+
+        return {
+            city: location.city,
+            country: location.country,
+            list: dailyForecasts
+        };
+    }
 });
