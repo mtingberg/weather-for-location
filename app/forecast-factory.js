@@ -20,7 +20,7 @@ module.exports = angular.module('app').factory('forecastFactory', function ($htt
                         APPID: OPEN_WEATHER_MAP_APP_ID
                     },
                     responseType: 'json',
-                    timeout: 500
+                    timeout: 5000
                 })
                     .success(function (data) {
                         resolve(data);
@@ -41,6 +41,7 @@ module.exports = angular.module('app').factory('forecastFactory', function ($htt
                     console.error(message);
                 });
         },
+
         getDailyForecastForPosition: function (position) {
             return new Promise(function (resolve, reject) {
                 $http.get(DAILY_FORECAST_BASE_URL, {
@@ -53,7 +54,7 @@ module.exports = angular.module('app').factory('forecastFactory', function ($htt
                         APPID: OPEN_WEATHER_MAP_APP_ID
                     },
                     responseType: 'json',
-                    timeout: 500
+                    timeout: 5000
                 })
                     .success(function (data) {
                         resolve(data);
