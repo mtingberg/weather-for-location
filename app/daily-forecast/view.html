@@ -1,15 +1,18 @@
 <div class="daily-forecast-container" ng-controller="DailyForecastCtrl">
     <section class="location-container">
         <div class="current-location-container">
-            <div class="location-city">{{::forecast.city}}</div>
-            <div class="location-country">{{::forecast.country}}</div>
+            <div class="location-city">{{forecast.city}}</div>
+            <div class="location-country">{{forecast.country}}</div>
         </div>
 
-        <div class="international-locations-container" ng-controller="InternationalLocationsCtrl">
-            <select class="locations-dropdown">
-                <option ng-repeat="location in locations | orderBy:'name'"
-                        value="{{::location.name}}">{{::location.name}}
-                </option>
+<!--
+        <div class="predefined-locations-container" ng-controller="wflLocationsCtrl">
+-->
+        <div class="predefined-locations-container">
+            <select class="locations-dropdown"
+                    ng-model="props.selected"
+                    ng-options="location.name for location in props.locations"
+                    ng-change="props.getSelectedLocation(props.selected)">
             </select>
         </div>
     </section>
@@ -17,14 +20,14 @@
     <section class="daily-container">
         <div class="daily-item" ng-repeat="day in forecast.list">
             <div class="forecast-date-container">
-                <div class="forecast-date">{{::day.forecastDate}}</div>
+                <div class="forecast-date">{{day.forecastDate}}</div>
             </div>
 
-            <i class="wi {{::day.weatherIcon}} weather-icon"></i>
+            <i class="wi {{day.weatherIcon}} weather-icon"></i>
 
             <div class="temp-container">
-                <div class="current-temp">{{::day.dayTemperature}}</div>
-                <div class="temp-unit">&deg;{{::day.temperatureUnit}}</div>
+                <div class="current-temp">{{day.dayTemperature}}</div>
+                <div class="temp-unit">&deg;{{day.temperatureUnit}}</div>
             </div>
         </div>
     </section>

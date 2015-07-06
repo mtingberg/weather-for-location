@@ -1,9 +1,18 @@
 'use strict';
 
-module.exports = getInternationalLocations;
+module.exports = getPredefinedLocations;
 
-function getInternationalLocations() {
+function getPredefinedLocations() {
     return [
+        {
+            'id': -1,
+            'name': 'Use my location',
+            'coord': {
+                'lon': 0,
+                'lat': 0
+            },
+            'country': ''
+        },
         {
             'id': 2643743,
             'name': 'London',
@@ -14,7 +23,7 @@ function getInternationalLocations() {
             'country': 'GB'
         },
         {
-            'id': '5128581',
+            'id': 5128581,
             'name': 'New York',
             'coord': {
                 'lon': -74.0071,
@@ -59,7 +68,7 @@ function getInternationalLocations() {
             'country': 'TR'
         },
         {
-            'id': '5391959',
+            'id': 5391959,
             'name': 'San Francisco',
             'coord': {
                 'lon': -122.42,
@@ -77,7 +86,7 @@ function getInternationalLocations() {
             'country': 'India'
         },
         {
-            'id': '6693229',
+            'id': 6693229,
             'name': 'Buenos Aires',
             'coord': {
                 'lon': -58.3735,
