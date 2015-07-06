@@ -10,8 +10,9 @@ angular.module('app', [
     'ngResource'
 ]);
 
-require('./common-controllers/international-locations-controller');
+require('./common-controllers/wfl-locations-controller');
 require('./forecast-factory');
+require('./location-factory');
 require('./current-weather/current-weather-controller');
 require('./daily-forecast/daily-forecast-controller');
 
@@ -20,16 +21,13 @@ require('./daily-forecast/daily-forecast-controller');
 angular.module('app').config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'current-weather/view.html',
-            controller: 'CurrentWeatherCtrl'
+            templateUrl: 'current-weather/view.html'
         })
         .when('/current-weather', {
-            templateUrl: 'current-weather/view.html',
-            controller: 'CurrentWeatherCtrl'
+            templateUrl: 'current-weather/view.html'
         })
         .when('/daily-forecast', {
-            templateUrl: 'daily-forecast/view.html',
-            controller: 'DailyForecastCtrl'
+            templateUrl: 'daily-forecast/view.html'
         })
         .otherwise({
             redirectTo: '/'
