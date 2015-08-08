@@ -1,34 +1,122 @@
-<div class="daily-forecast-container" ng-controller="DailyForecastCtrl">
-    <section class="location-container">
-        <div class="current-location-container">
-            <div class="location-city">{{forecast.city}}</div>
-            <div class="location-country">{{forecast.country}}</div>
+<section class="df-wrapper" ng-controller="DailyForecastCtrl">
+    <header class="df-header">
+    </header>
+
+    <!--
+        Use ng-if to make sure the forecast data promise is resolved, otherwise the
+        custom directives (wfl-background-image, ...) will be called with 'undefined'.
+    -->
+    <div class="df-location-container" ng-if="location">
+
+        <div class="df-location truncate">
+            {{location.city}}, {{location.country}}
         </div>
 
-<!--
-        <div class="predefined-locations-container" ng-controller="wflLocationsCtrl">
--->
-        <div class="predefined-locations-container">
-            <select class="locations-dropdown"
-                    ng-model="props.selected"
-                    ng-options="location.name for location in props.locations"
-                    ng-change="props.getSelectedLocation(props.selected)">
-            </select>
-        </div>
-    </section>
+        <div class="df-top-banner" wfl-background-image="{{location.image}}">
+            <div class="df-current-weather-container">
+                <div class="df-forecast-date">
+                    {{currentDayForecast.forecastTime | date:'EEE MMM dd'}}
+                </div>
 
-    <section class="daily-container">
-        <div class="daily-item" ng-repeat="day in forecast.list">
-            <div class="forecast-date-container">
-                <div class="forecast-date">{{day.forecastDate}}</div>
+                <div class="df-forecast-time">
+                    {{currentDayForecast.forecastTime | date:'HH:mm'}}
+                </div>
+
+                <div class="df-temperature">
+                    {{currentDayForecast.dayTemperature}}°C
+                </div>
+
+                <div class="df-forecast-text truncate">
+                    {{currentDayForecast.forecastText}}
+                </div>
+
+                <div class="df-current-details-container">
+                    <div class="df-detail-container">
+                        <div class="df-detail-icon">
+                            <div class="wi wi-sprinkles"></div>
+                        </div>
+
+                        <div class="df-detail-text">
+                            {{currentDayForecast.humidity}}%
+                        </div>
+
+                        <div class="df-detail-header">
+                            Humidity
+                        </div>
+                    </div>
+
+                    <div class="df-separator">
+                        ...
+                    </div>
+
+                    <div class="df-detail-container">
+                        <div class="df-detail-icon">
+                            <div class="wi wi-up-left"></div>
+                        </div>
+
+                        <div class="df-detail-text">
+                            {{currentDayForecast.windSpeed}} mps
+                        </div>
+
+                        <div class="df-detail-header">
+                            Wind
+                        </div>
+                    </div>
+
+                    <div class="df-separator">
+                        ...
+                    </div>
+
+                    <div class="df-detail-container">
+                        <div class="df-detail-icon">
+                            <div class="wi wi-thermometer"></div>
+                        </div>
+
+                        <div class="df-detail-text">
+                            {{currentDayForecast.feelsLikeTemperature}}°C
+                        </div>
+
+                        <div class="df-detail-header">
+                            Feels like
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="df-location-picture">
+            <div class="df-forecast-icon">
+                <div class="wi {{currentDayForecast.weatherIcon}}"></div>
+            </div>
+        </div>
+    </div>
+
+    <ul class="df-daily-forecasts-container">
+        <li class="df-day" ng-repeat="day in futureForecasts">
+            <div class="df-date">
+                {{day.forecastDate | date:'EEE MMM dd'}}
             </div>
 
-            <i class="wi {{day.weatherIcon}} weather-icon"></i>
-
-            <div class="temp-container">
-                <div class="current-temp">{{day.dayTemperature}}</div>
-                <div class="temp-unit">&deg;{{day.temperatureUnit}}</div>
+            <div class="df-time">
+                {{day.forecastDate | date:'HH:mm'}}
             </div>
-        </div>
-    </section>
-</div>
+
+            <div class="df-day-details-container">
+                <div class="df-day-forecast-icon">
+                    <div class="wi {{day.weatherIcon}}"></div>
+                </div>
+
+                <div class="df-day-temperature">
+                    {{day.dayTemperature}}°C
+                </div>
+
+                <div class="df-day-forecast-text truncate">
+                    {{day.forecastText}}
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <footer class="df-footer">
+    </footer>
+</section>
