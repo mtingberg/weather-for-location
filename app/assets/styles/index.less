@@ -3,8 +3,8 @@
 @import "variables.less";
 @import "mixins.less";
 @import "./vendor/weather-icons/weather-icons";
-@import "../../current-weather/current-weather";
 @import "../../daily-forecast/daily-forecast";
+@import "../../dashboard/dashboard";
 
 * {
     box-sizing: border-box
@@ -13,6 +13,10 @@
 @font-face {
     font-family: 'Montserrat Regular';
     src: url('/assets/fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Helvetica Neue LT Pro', 'Helvetica', 'Arial', 'serif';
 }
 
 img {
@@ -37,12 +41,9 @@ a {
     }
 }
 
-body {
-    margin: 0 auto;
-    max-width: 80vw;
-}
-
 .header-nav {
+    display: none;
+
     margin: 0;
     color: #fff;
 
@@ -79,7 +80,7 @@ body {
 }
 
 .wrapper {
-    margin: 0 2rem;
+    margin: 0;
 
     h1 {
         margin: 1.5rem 0 2rem 0;
@@ -92,18 +93,27 @@ body {
     padding: 2.3rem;
 }
 
-
-@media all and (max-width: 599px) {
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-@media all and (min-width: 600px) and (max-width: 1000px) {
-    .wrapper {
-        margin: 0;
+
+@media all and (max-width: 349px) {
+}
+
+@media all and (min-width: 350px) {
+    body {
+        margin: 0 auto;
+        max-width: 55rem;
+
+        .wrapper {
+            margin: 3.5rem 0;
+        }
     }
-}
 
-@media all and (min-width: 1001px) {
-    .wrapper {
-        margin: 0;
+    .header-nav {
+        display: block;
     }
 }

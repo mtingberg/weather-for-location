@@ -1,0 +1,69 @@
+<section class="db-wrapper" ng-controller="DashboardCtrl">
+    <header class="db-header">
+        Global Weather
+    </header>
+
+    <div class="db-locations-container">
+        <!--
+            Use ng-if to make sure the forecast data promise is resolved, otherwise the
+            custom directives (wfl-humidity, ...) will be called with 'undefined'.
+        -->
+        <div class="db-location-forecast" ng-if="forecast" ng-repeat="forecast in forecasts">
+
+            <a class="location-link" ng-href="#/daily-forecast/{{forecast.location.id}}">
+
+                <div class="db-location-image-container" wfl-background-image="{{forecast.location.image}}">
+                    <div class="db-current-details-container">
+                        <div class="db-detail-container">
+                            <wfl-humidity level="{{forecast.currentDayForecast.humidity}}"></wfl-humidity>
+                        </div>
+
+                        <wfl-dots-separator></wfl-dots-separator>
+
+                        <div class="db-detail-container">
+                            <wfl-wind speed="{{forecast.currentDayForecast.windSpeed}}"></wfl-wind>
+                        </div>
+
+                        <wfl-dots-separator></wfl-dots-separator>
+
+                        <div class="db-detail-container">
+                            <wfl-temperature
+                                degrees="{{forecast.currentDayForecast.feelsLikeTemperature}}"></wfl-temperature>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="db-forecast-icon-text-container">
+                    <div class="db-forecast-icon">
+                        <div class="wi {{forecast.currentDayForecast.weatherIcon}}"></div>
+                    </div>
+
+                    <div class="db-forecast-text truncate">
+                        {{forecast.currentDayForecast.forecastText}}
+                    </div>
+                </div>
+
+                <div class="db-temperature-container">
+                    <div class="db-temperature">
+                        {{forecast.currentDayForecast.dayTemperature}}°C
+                    </div>
+
+                    <div class="db-location truncate">
+                        {{forecast.location.city}}
+                    </div>
+
+                    <div class="db-forecast-time">
+                        {{forecast.currentDayForecast.forecastTime | date:'HH:mm'}}
+                    </div>
+
+                    <div class="db-forecast-date">
+                        {{forecast.currentDayForecast.forecastTime | date:'EEE MMM dd yyyy'}}
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer class="db-footer">
+    </footer>
+</section>

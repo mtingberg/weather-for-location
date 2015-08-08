@@ -1,0 +1,57 @@
+[
+    {
+        "id": "2643743",
+        "name": "London",
+        "ianaTimeZoneDBName": "Europe/London"
+    },
+    {
+        "id": "5128581",
+        "name": "New York",
+        "ianaTimeZoneDBName": "America/New_York"
+    },
+    {
+        "id": "1816670",
+        "name": "Beijing",
+        "ianaTimeZoneDBName": "Asia/Shanghai"
+    },
+    {
+        "id": "1850147",
+        "name": "Tokyo",
+        "ianaTimeZoneDBName": "Asia/Tokyo"
+    },
+    {
+        "id": "260114",
+        "name": "Chania",
+        "ianaTimeZoneDBName": "Europe/Athens"
+    },
+    {
+        "id": "745044",
+        "name": "Istanbul",
+        "ianaTimeZoneDBName": "Europe/Istanbul"
+    },
+    {
+        "id": "5391959",
+        "name": "San Francisco",
+        "ianaTimeZoneDBName": "America/Los_Angeles"
+    },
+    {
+        "id": "1277333",
+        "name": "Bangalore",
+        "ianaTimeZoneDBName": "Asia/Kolkata"
+    },
+    {
+        "id": "3435910",
+        "name": "Buenos Aires",
+        "ianaTimeZoneDBName": "America/Argentina/Buenos_Aires"
+    },
+    {
+        "id": "3451190",
+        "name": "Rio de Janeiro",
+        "ianaTimeZoneDBName": "America/Sao_Paulo"
+    },
+    {
+        "id": "2147714",
+        "name": "Sydney",
+        "ianaTimeZoneDBName": "Australia/Sydney"
+    }
+]

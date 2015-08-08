@@ -1,0 +1,8 @@
+{
+    "OpenWeatherMap": {
+        "appId": "demo"
+    },
+    "Deployment": {
+        "distributionDir": "dist"
+    }
+}

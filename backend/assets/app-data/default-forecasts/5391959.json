@@ -1,0 +1,233 @@
+{
+    "cod": "200",
+    "message": 0.001,
+    "city": {
+        "id": 5391959,
+        "name": "San Francisco",
+        "coord": {
+            "lon": -122.419418,
+            "lat": 37.774929
+        },
+        "country": "US",
+        "population": 805235
+    },
+    "cnt": 9,
+    "list": [
+        {
+            "dt": 1434398400,
+            "temp": {
+                "day": 12.65,
+                "min": 12.65,
+                "max": 12.65,
+                "night": 12.65,
+                "eve": 12.65,
+                "morn": 12.65
+            },
+            "pressure": 1006.55,
+            "humidity": 91,
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "sky is clear",
+                    "icon": "01n"
+                }
+            ],
+            "speed": 1.16,
+            "deg": 218,
+            "clouds": 0
+        },
+        {
+            "dt": 1434484800,
+            "temp": {
+                "day": 27.71,
+                "min": 10.94,
+                "max": 27.71,
+                "night": 10.94,
+                "eve": 23.23,
+                "morn": 15.25
+            },
+            "pressure": 1007.1,
+            "humidity": 53,
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "sky is clear",
+                    "icon": "01d"
+                }
+            ],
+            "speed": 1.95,
+            "deg": 256,
+            "clouds": 0
+        },
+        {
+            "dt": 1434571200,
+            "temp": {
+                "day": 29.22,
+                "min": 12.18,
+                "max": 29.59,
+                "night": 12.18,
+                "eve": 24.65,
+                "morn": 14.51
+            },
+            "pressure": 1006.73,
+            "humidity": 50,
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "sky is clear",
+                    "icon": "01d"
+                }
+            ],
+            "speed": 1.81,
+            "deg": 257,
+            "clouds": 0
+        },
+        {
+            "dt": 1434657600,
+            "temp": {
+                "day": 24.5,
+                "min": 10.64,
+                "max": 29.4,
+                "night": 17.42,
+                "eve": 29.4,
+                "morn": 10.64
+            },
+            "pressure": 1011.36,
+            "humidity": 0,
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "sky is clear",
+                    "icon": "01d"
+                }
+            ],
+            "speed": 1.51,
+            "deg": 261,
+            "clouds": 0
+        },
+        {
+            "dt": 1434744000,
+            "temp": {
+                "day": 25.18,
+                "min": 12.18,
+                "max": 30.2,
+                "night": 18.7,
+                "eve": 30.2,
+                "morn": 12.18
+            },
+            "pressure": 1009.93,
+            "humidity": 0,
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "sky is clear",
+                    "icon": "01d"
+                }
+            ],
+            "speed": 1.77,
+            "deg": 271,
+            "clouds": 0
+        },
+        {
+            "dt": 1434830400,
+            "temp": {
+                "day": 28.51,
+                "min": 13.75,
+                "max": 33.41,
+                "night": 20.63,
+                "eve": 33.41,
+                "morn": 13.75
+            },
+            "pressure": 1005.77,
+            "humidity": 0,
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "sky is clear",
+                    "icon": "01d"
+                }
+            ],
+            "speed": 1.93,
+            "deg": 314,
+            "clouds": 0
+        },
+        {
+            "dt": 1434916800,
+            "temp": {
+                "day": 28.26,
+                "min": 14.67,
+                "max": 31.2,
+                "night": 18.14,
+                "eve": 31.2,
+                "morn": 14.67
+            },
+            "pressure": 1005.64,
+            "humidity": 0,
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "sky is clear",
+                    "icon": "01d"
+                }
+            ],
+            "speed": 1.54,
+            "deg": 185,
+            "clouds": 0
+        },
+        {
+            "dt": 1435003200,
+            "temp": {
+                "day": 21.57,
+                "min": 11.57,
+                "max": 26.61,
+                "night": 15.68,
+                "eve": 26.61,
+                "morn": 11.57
+            },
+            "pressure": 1009.64,
+            "humidity": 0,
+            "weather": [
+                {
+                    "id": 500,
+                    "main": "Rain",
+                    "description": "light rain",
+                    "icon": "10d"
+                }
+            ],
+            "speed": 1.8,
+            "deg": 228,
+            "clouds": 4
+        },
+        {
+            "dt": 1435089600,
+            "temp": {
+                "day": 24.54,
+                "min": 11.22,
+                "max": 29.12,
+                "night": 16.06,
+                "eve": 29.12,
+                "morn": 11.22
+            },
+            "pressure": 1008.23,
+            "humidity": 0,
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "sky is clear",
+                    "icon": "01d"
+                }
+            ],
+            "speed": 1.6,
+            "deg": 263,
+            "clouds": 0
+        }
+    ]
+}

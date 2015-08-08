@@ -1,0 +1,195 @@
+.db-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: #303747;
+    text-align: center;
+    font-size: 0.9rem;
+
+    .db-header {
+        background-color: #272E38;
+        height: 4.9rem;
+        text-align: left;
+        padding: 1.6rem 0 0 1.4rem;
+        color: #fff;
+        font-size: 1.4rem;
+    }
+
+    .db-locations-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .db-location-forecast {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            width: 100%;
+
+/*
+            opacity: 0.9;
+
+            &:hover {
+                opacity: 1;
+                transition: opacity .25s ease;
+            }
+*/
+
+            a.location-link {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                width: 100%;
+                text-decoration: none;
+                color: initial;
+
+                &:visited {
+                    text-decoration: none;
+                    color: initial;
+                }
+
+                .db-location-image-container {
+                    display: flex;
+                    width: 40%;
+                    height: 11rem;
+
+                    .db-current-details-container {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        text-align: center;
+                        color: #fff;
+                        background: rgba(0, 0, 0, 0.13);
+                        padding: 0.7rem;
+                        width: 100%;
+                        margin: auto;
+
+                        .db-detail-container {
+                            flex-grow: 1;
+
+                            .db-detail-icon {
+                                font-size: 1rem;
+                            }
+
+                            .db-detail-text-container {
+                                margin: 0.2rem 0;
+
+                                .db-detail-text {
+                                }
+
+                                .db-detail-unit {
+                                    font-size: 0.65rem;
+                                    vertical-align: top;
+                                }
+                            }
+
+                            .db-detail-header {
+                                text-transform: uppercase;
+                                font-size: 0.75rem;
+                                letter-spacing: 0.05em;
+                            }
+                        }
+
+                        .db-separator {
+                            flex-grow: 1;
+                        }
+                    }
+                }
+
+                .db-forecast-icon-text-container {
+                    width: 20%;
+                    background-color: #272E38;
+                    border-top: solid 3px #bbc2f8;
+                    height: 11rem;
+
+                    .db-forecast-icon {
+                        margin-top: 1.9rem;
+                        font-size: 4.5rem;
+                        color: #E7E8FC;
+                    }
+
+                    .db-forecast-text {
+                        color: #E7E8FC;
+                        padding: 0 0.7rem;
+                    }
+                }
+
+                .db-temperature-container {
+                    width: 40%;
+                    text-align: left;
+                    height: 11rem;
+                    padding: 1rem 1.4rem;
+
+                    .db-temperature {
+                        color: #e7e8fc;
+                        font-size: 4.5rem;
+                    }
+
+                    .db-location {
+                        color: #6e7184;
+                        font-size: 1.2rem;
+                    }
+
+                    .db-forecast-time {
+                        color: #6E7184;
+                        font-size: 0.8rem;
+                    }
+
+                    .db-forecast-date {
+                        color: #fefcff;
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .db-footer {
+        order: 5;
+        height: 4.5rem;
+    }
+}
+
+@media all and (max-width: 349px) {
+}
+
+@media all and (min-width: 350px) {
+    .db-wrapper {
+        margin: 0;
+
+        .db-locations-container {
+            .db-location-forecast:nth-child(odd) {
+                .db-location-image-container {
+                    order: 1;
+                }
+
+                .db-forecast-icon-text-container {
+                    order: 2;
+                }
+
+                .db-temperature-container {
+                    order: 3;
+                }
+            }
+        }
+
+        .db-locations-container {
+            .db-location-forecast:nth-child(even) {
+                .db-location-image-container {
+                    order: 3;
+                }
+
+                .db-forecast-icon-text-container {
+                    order: 1;
+                }
+
+                .db-temperature-container {
+                    order: 2;
+                }
+            }
+        }
+    }
+}
