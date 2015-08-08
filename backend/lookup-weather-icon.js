@@ -111,6 +111,7 @@ function lookupWeatherIcon(weatherConditionCode, isDayTime) {
 function getAlternativeNightTimeIcon(iconName) {
     var icons = {
         'wi-day-sunny': 'wi-night-clear',
+        'wi-day-sunny-overcast': 'wi-night-alt-cloudy',
         'wi-day-rain': 'wi-night-alt-rain',
         'wi-sprinkle': 'wi-night-alt-sprinkle',
         'wi-cloudy-gusts': 'wi-night-alt-cloudy-gusts',
