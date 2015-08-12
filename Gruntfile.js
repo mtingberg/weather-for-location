@@ -230,8 +230,19 @@ module.exports = function (grunt) {
         usemin: {
             html: '<%= config.dest_app_dir %>/index.html',
             css:  '<%= config.dest_assets_dir %>/**/*.css',
+            js: '<%= config.dest_assets_dir %>/**/*.js',
             options: {
-                assetsDirs: ['<%= config.dest_app_dir %>']
+                assetsDirs: ['<%= config.dest_app_dir %>', '<%= config.dest_assets_dir %>', '<%= config.dest_assets_dir %>/images'],
+
+                // Match all chars that are not whitespace, ' and " (then followed by a valid extension).
+                patterns: {
+                    css: [
+                        [/([^\s'"]*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the CSS to reference our revved images']
+                    ],
+                    js: [
+                        [/([^\s'"]*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Look in bundle.js for revved assets']
+                    ]
+                }
             }
         },
 
