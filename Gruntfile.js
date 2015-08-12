@@ -73,6 +73,29 @@ module.exports = function (grunt) {
                         dest: '<%= config.dest_app_dir %>'
                     }
                 ]
+            },
+            release_files: {
+                files: [
+                    {
+                        expand: true,
+                        dot: true,
+                        flatten: true,
+                        cwd: '<%= config.root_dir %>',
+                        src: [
+                            'server.js',
+                            'package.json'
+                        ],
+                        dest: '<%= config.dest_dir %>'
+                    },
+                    {
+                        expand: 'true',
+                        cwd: '<%= config.root_dir %>',
+                        src: [
+                            './config/**/*'
+                        ],
+                        dest: '<%= config.dest_dir %>'
+                    }
+                ]
             }
         },
 
