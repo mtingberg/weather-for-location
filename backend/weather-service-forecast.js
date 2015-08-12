@@ -5,6 +5,7 @@ var Promise = require('bluebird'),
     dailyForecasts = require('./daily-forecasts'),
     forecastContainer = require('./forecast-container')(),
     moment = require('moment'),
+    logger = require('./logger')(),
 
     cachedLocationForecast = null,
     cachedLocationForecastTimestamp = undefined,
@@ -35,7 +36,7 @@ module.exports = {
                 return forecastContainer;
 
             }).catch(function (error) {
-                console.error(error.message);
+                logger.error(error.message);
             });
     },
 
@@ -70,7 +71,7 @@ module.exports = {
                     return cachedLocationForecast;
 
                 }).catch(function (error) {
-                    console.error(error.message);
+                    logger.error(error.message);
                 });
         }
     }

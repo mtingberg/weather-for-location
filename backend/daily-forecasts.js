@@ -10,6 +10,7 @@ var Promise = require('bluebird'),
 
     forecastContainer = require('./forecast-container')(),
     formatFutureForecast = require('./format-future-forecast'),
+    logger = require('./logger')(),
 
     DAILY_FORECAST_BASE_URL = 'http://api.openweathermap.org/data/2.5/forecast/daily';
 
@@ -21,7 +22,7 @@ module.exports = {
             openWeatherMapAppId = config.get('OpenWeatherMap.appId');
 
         if (openWeatherMapAppId === 'demo') {
-            console.log('openWeatherMapAppId === \'demo\'');
+            logger.info('openWeatherMapAppId === \'demo\'');
         }
 
         return Promise.all(dailyForecastPromises).then(function (dailyForecasts) {
@@ -36,7 +37,7 @@ module.exports = {
             });
 
         }, function (err) {
-            console.error(err.message);
+            logger.error(err.message);
         });
     },
 
@@ -48,7 +49,7 @@ module.exports = {
             openWeatherMapAppId = config.get('OpenWeatherMap.appId');
 
         if (openWeatherMapAppId === 'demo') {
-            console.log('openWeatherMapAppId === \'demo\'');
+            logger.info('openWeatherMapAppId === \'demo\'');
         }
 
         return Promise.all(dailyForecastPromise).then(function (forecasts) {
@@ -63,7 +64,7 @@ module.exports = {
             }
 
         }, function (err) {
-            console.error(err.message);
+            logger.error(err.message);
         });
     }
 };
@@ -110,14 +111,14 @@ function getDailyForecastsForCityId(id) {
             return response;
 
         }, function (err) {
-            console.error(err.message);
+            logger.error(err.message);
         })
         .catch(TypeError, ReferenceError, function (err) {
             // will end up here on programmer error
-            console.error(err.message);
+            logger.error(err.message);
 
         }).catch(function (err) {
             // catch any unexpected errors
-            console.error(err.message);
+            logger.error(err.message);
         });
 }

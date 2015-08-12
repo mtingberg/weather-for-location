@@ -5,6 +5,7 @@ var express = require('express'),
     path = require('path'),
     weatherServiceForecast = require('./backend/weather-service-forecast'),
     config = require('config'),
+    logger = require('./backend/logger')(),
     cachedWeatherForecasts = null;
 
 var app = express();
@@ -15,7 +16,7 @@ app.use(express.static(path.join(__dirname, config.get('Deployment.distributionD
 express.static.mime.define({'application/x-font-ttf': ['ttf']});
 
 app.listen(app.get('port'));
-console.log('Express server listening on port ' + app.get('port'));
+logger.info('Express server listening on port ' + app.get('port'));
 
 
 updateCachedWeatherForecasts();
@@ -24,6 +25,8 @@ setInterval(updateCachedWeatherForecasts, 1000 * 60 * 10);
 function updateCachedWeatherForecasts() {
     weatherServiceForecast.getAll().then(function (forecasts) {
         cachedWeatherForecasts = forecasts;
+        logger.info('Forecasts retrieved from weather service.');
+        logger.debug(cachedWeatherForecasts);
     });
 }
 
@@ -47,11 +50,12 @@ app.get('/api/forecast/location/:cityId', function(request, response) {
         if (forecast) {
             response.send(forecast);
         } else {
+            logger.warn('Lookup of /api/forecast/location/' + cityId + ' failed.');
             response.sendStatus(404);
         }
 
     }, function (error) {
-        console.error(error);
+        logger.error(error);
     });
 });
 
@@ -64,6 +68,7 @@ app.get('/api/forecast/predefined/location/:cityId', function(request, response,
 
     } else {
         if (!cachedWeatherForecasts[cityId]) {
+            logger.warn('Lookup of /api/forecast/predefined/location/' + cityId + ' failed.');
             response.sendStatus(404);
         } else {
             response.send(cachedWeatherForecasts[cityId]);
@@ -80,6 +85,7 @@ app.get('/api/forecast/predefined/location/:cityId/:section', function(request, 
         response.send(cachedWeatherForecasts[cityId][section]);
         next();
     } else {
+        logger.warn('Lookup of /api/forecast/predefined/location/' + cityId + '/' + section + ' failed.');
         response.sendStatus(404);
     }
 });

@@ -11,6 +11,7 @@ var Promise = require('bluebird'),
     forecastContainer = require('./forecast-container')(),
     formatCurrentDayForecast = require('./format-current-day-forecast'),
     formatForecastLocation = require('./format-forecast-location'),
+    logger = require('./logger')(),
 
     CURRENT_FORECAST_BASE_URL = 'http://api.openweathermap.org/data/2.5/weather';
 
@@ -21,7 +22,7 @@ module.exports = {
             openWeatherMapAppId = config.get('OpenWeatherMap.appId');
 
         if (openWeatherMapAppId === 'demo') {
-            console.log('openWeatherMapAppId === \'demo\'');
+            logger.info('openWeatherMapAppId === \'demo\'');
         }
 
         return Promise.all(currentDayForecastPromises).then(function (currentDayForecasts) {
@@ -38,7 +39,7 @@ module.exports = {
             });
 
         }, function (err) {
-            console.error(err.message);
+            logger.error(err.message);
         });
     },
 
@@ -51,7 +52,7 @@ module.exports = {
             openWeatherMapAppId = config.get('OpenWeatherMap.appId');
 
         if (openWeatherMapAppId === 'demo') {
-            console.log('openWeatherMapAppId === \'demo\'');
+            logger.info('openWeatherMapAppId === \'demo\'');
         }
 
         return Promise.all(currentDayForecastPromise).then(function (forecasts) {
@@ -67,7 +68,7 @@ module.exports = {
             }
 
         }, function (err) {
-            console.error(err.message);
+            logger.error(err.message);
         });
     }
 };
@@ -111,14 +112,14 @@ function getCurrentWeatherForCityId(id) {
             return response;
 
         }, function (err) {
-            console.error(err.message);
+            logger.error(err.message);
         })
         .catch(TypeError, ReferenceError, function (err) {
             // will end up here on programmer error
-            console.error(err.message);
+            logger.error(err.message);
 
         }).catch(function (err) {
             // catch any unexpected errors
-            console.error(err.message);
+            logger.error(err.message);
         });
 }
