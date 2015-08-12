@@ -95,11 +95,14 @@ module.exports = function (grunt) {
             }
         },
 
-        autoprefixer: {
-            all: {
-                options: {
-                    // Use 'browserslist' file for options.
-                },
+        postcss: {
+            options: {
+                map: true,
+                processors: [
+                    require('autoprefixer-core')({browsers: ['last 2 versions']})
+                ]
+            },
+            dist: {
                 src: '<%= config.dest_assets_css_dir %>/index.css' // dest will be set automatically (same as src)
             }
         },
@@ -287,7 +290,7 @@ module.exports = function (grunt) {
         'clean',
         'jshint',
         'less',
-        'autoprefixer',
+        'postcss',
         'copy:build',
         'browserify:build',
         'exorcise:build'
@@ -297,7 +300,7 @@ module.exports = function (grunt) {
         'clean',
         'jshint',
         'less',
-        'autoprefixer',
+        'postcss',
         'copy',
         'imagemin',
         'cssmin',
