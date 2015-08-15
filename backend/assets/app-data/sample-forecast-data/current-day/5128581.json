@@ -1,0 +1,41 @@
+{
+    "coord": {
+        "lon": -74.01,
+        "lat": 40.71
+    },
+    "weather": [
+        {
+            "id": 701,
+            "main": "Mist",
+            "description": "mist",
+            "icon": "50n"
+        }
+    ],
+    "base": "cmc stations",
+    "main": {
+        "temp": 20,
+        "pressure": 1019,
+        "humidity": 77,
+        "temp_min": 16.9,
+        "temp_max": 24
+    },
+    "wind": {
+        "speed": 2.1,
+        "deg": 210
+    },
+    "clouds": {
+        "all": 1
+    },
+    "dt": 1439629317,
+    "sys": {
+        "type": 1,
+        "id": 1975,
+        "message": 0.0046,
+        "country": "US",
+        "sunrise": 1439633187,
+        "sunset": 1439682827
+    },
+    "id": 5128581,
+    "name": "New York",
+    "cod": 200
+}

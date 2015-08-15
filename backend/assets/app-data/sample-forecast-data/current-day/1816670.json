@@ -1,0 +1,40 @@
+{
+    "coord": {
+        "lon": 116.4,
+        "lat": 39.91
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "Sky is Clear",
+            "icon": "01d"
+        }
+    ],
+    "base": "cmc stations",
+    "main": {
+        "temp": 30.78,
+        "pressure": 1003,
+        "humidity": 32,
+        "temp_min": 28.89,
+        "temp_max": 34
+    },
+    "wind": {
+        "speed": 1
+    },
+    "clouds": {
+        "all": 0
+    },
+    "dt": 1439630418,
+    "sys": {
+        "type": 1,
+        "id": 7405,
+        "message": 0.0076,
+        "country": "CN",
+        "sunrise": 1439587547,
+        "sunset": 1439637084
+    },
+    "id": 1816670,
+    "name": "Beijing",
+    "cod": 200
+}

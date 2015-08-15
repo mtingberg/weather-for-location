@@ -1,0 +1,41 @@
+{
+    "coord": {
+        "lon": 24.02,
+        "lat": 35.51
+    },
+    "weather": [
+        {
+            "id": 802,
+            "main": "Clouds",
+            "description": "scattered clouds",
+            "icon": "03d"
+        }
+    ],
+    "base": "cmc stations",
+    "main": {
+        "temp": 28,
+        "pressure": 1009,
+        "humidity": 74,
+        "temp_min": 28,
+        "temp_max": 28
+    },
+    "wind": {
+        "speed": 2.6,
+        "deg": 70
+    },
+    "clouds": {
+        "all": 40
+    },
+    "dt": 1439628600,
+    "sys": {
+        "type": 1,
+        "id": 5695,
+        "message": 0.0083,
+        "country": "GR",
+        "sunrise": 1439610182,
+        "sunset": 1439658792
+    },
+    "id": 260114,
+    "name": "Chania",
+    "cod": 200
+}

@@ -1,0 +1,42 @@
+{
+    "coord": {
+        "lon": -58.38,
+        "lat": -34.61
+    },
+    "weather": [
+        {
+            "id": 803,
+            "main": "Clouds",
+            "description": "broken clouds",
+            "icon": "04n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 8.49,
+        "pressure": 1016,
+        "humidity": 87,
+        "temp_min": 8,
+        "temp_max": 9
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 2.6,
+        "deg": 240
+    },
+    "clouds": {
+        "all": 75
+    },
+    "dt": 1439625600,
+    "sys": {
+        "type": 1,
+        "id": 4699,
+        "message": 0.0082,
+        "country": "AR",
+        "sunrise": 1439634797,
+        "sunset": 1439673782
+    },
+    "id": 3435910,
+    "name": "Buenos Aires",
+    "cod": 200
+}
