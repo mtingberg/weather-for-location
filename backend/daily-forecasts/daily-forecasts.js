@@ -8,29 +8,27 @@ var Promise = require('bluebird'),
     // Put a promise wrapper around 'request-retry' since using the node callback style format.
     request = Promise.promisify(require('requestretry')),
 
-    forecastContainer = require('./forecast-container')(),
-    formatCurrentDayForecast = require('./format-current-day-forecast'),
-    formatForecastLocation = require('./format-forecast-location'),
-    logger = require('./logger')(),
+    forecastContainer = require('../forecast-container')(),
+    formatFutureForecast = require('./format-future-forecast'),
+    logger = require('../logger')(),
 
-    CURRENT_FORECAST_BASE_URL = 'http://api.openweathermap.org/data/2.5/weather';
+    DAILY_FORECAST_BASE_URL = 'http://api.openweathermap.org/data/2.5/forecast/daily';
+
 
 module.exports = {
     getAll: function () {
         var cityIds = createCityIdArray(forecastContainer),
-            currentDayForecastPromises = getCurrentDayForecastData(cityIds),
+            dailyForecastPromises = getDailyForecastsData(cityIds),
             openWeatherMapAppId = config.get('OpenWeatherMap.appId');
 
         if (openWeatherMapAppId === 'demo') {
             logger.info('openWeatherMapAppId === \'demo\'');
         }
 
-        return Promise.all(currentDayForecastPromises).then(function (currentDayForecasts) {
-            currentDayForecasts.forEach(function (elem) {
-                if (elem && elem.cod === 200) {
-                    forecastContainer[elem.id].currentDayForecast =
-                        formatCurrentDayForecast(elem, forecastContainer[elem.id].ianaTimeZoneDBName);
-                    forecastContainer[elem.id].location = formatForecastLocation(elem);
+        return Promise.all(dailyForecastPromises).then(function (dailyForecasts) {
+            dailyForecasts.forEach(function (elem) {
+                if (elem && elem.cod === '200') {
+                    forecastContainer[elem.city.id].futureForecasts = formatFutureForecast(elem);
                 }
             });
 
@@ -47,22 +45,20 @@ module.exports = {
         var cityIds = [{
                 id: cityId
             }],
-            ianaTimeZoneDBName = undefined,     // Value not used for current gps location
-            currentDayForecastPromise = getCurrentDayForecastData(cityIds),
+            dailyForecastPromise = getDailyForecastsData(cityIds),
             openWeatherMapAppId = config.get('OpenWeatherMap.appId');
 
         if (openWeatherMapAppId === 'demo') {
             logger.info('openWeatherMapAppId === \'demo\'');
         }
 
-        return Promise.all(currentDayForecastPromise).then(function (forecasts) {
+        return Promise.all(dailyForecastPromise).then(function (forecasts) {
             var forecast = forecasts[0];
 
-            if (forecast && forecast.cod === 200) {
+            if (forecast && forecast.cod === '200') {
                 return new Promise(function (resolve) {
                     resolve({
-                        currentDayForecast: formatCurrentDayForecast(forecast, ianaTimeZoneDBName),
-                        location: formatForecastLocation(forecast)
+                        futureForecasts: formatFutureForecast(forecast)
                     });
                 });
             }
@@ -73,28 +69,31 @@ module.exports = {
     }
 };
 
+
 function createCityIdArray(forecastsObj) {
     return Object.keys(forecastsObj).map(function (elem) {
-        return {id: elem};
+        return { id: elem };
     });
 }
 
-function getCurrentDayForecastData(cityIds) {
+
+function getDailyForecastsData(cityIds) {
     return cityIds.map(function (elem) {
-        return getCurrentWeatherForCityId(elem.id);
+        return getDailyForecastsForCityId(elem.id);
     });
 }
 
-function getCurrentWeatherForCityId(id) {
+function getDailyForecastsForCityId(id) {
     return request({
         // request-retry npm module specific params
-        url: CURRENT_FORECAST_BASE_URL,
+        url: DAILY_FORECAST_BASE_URL,
         json: true,
 
         // request npm module params
         qs: {
             id: id,
             units: 'metric',
+            cnt: 9,
             mode: 'json',
             APPID: config.get('OpenWeatherMap.appId')
         },
@@ -108,7 +107,7 @@ function getCurrentWeatherForCityId(id) {
         maxAttempts: 5,
         retryDelay: 2000
     })
-        .spread(function (err, response) {
+        .spread(function(err, response) {
             return response;
 
         }, function (err) {

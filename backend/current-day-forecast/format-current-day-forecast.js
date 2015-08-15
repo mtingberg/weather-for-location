@@ -1,10 +1,10 @@
 'use strict';
 
 var heatIndex = require('heat-index'),
-    getLocalTimeAtLocation = require('./get-local-time-at-location'),
-    isDayTimeAtLocation = require('./is-day-time-at-location'),
-    lookupWeatherIcon = require('./lookup-weather-icon'),
-    formatForecastText = require('./format-forecast-text');
+    getLocalTimeAtLocation = require('../get-local-time-at-location'),
+    isDayTimeAtLocation = require('../is-day-time-at-location'),
+    lookupWeatherIcon = require('../lookup-weather-icon'),
+    formatForecastText = require('../format-forecast-text');
 
 module.exports = formatCurrentDayForecast;
 

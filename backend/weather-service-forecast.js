@@ -1,8 +1,8 @@
 'use strict';
 
 var Promise = require('bluebird'),
-    currentDayForecast = require('./current-day-forecast'),
-    dailyForecasts = require('./daily-forecasts'),
+    currentDayForecast = require('./current-day-forecast/current-day-forecast'),
+    dailyForecasts = require('./daily-forecasts/daily-forecasts'),
     forecastContainer = require('./forecast-container')(),
     moment = require('moment'),
     logger = require('./logger')(),
