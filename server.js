@@ -20,7 +20,7 @@ logger.info('Express server listening on port ' + app.get('port'));
 
 
 updateCachedWeatherForecasts();
-setInterval(updateCachedWeatherForecasts, 1000 * 60 * 10);
+setInterval(updateCachedWeatherForecasts, 1000 * 60 * 60);
 
 function updateCachedWeatherForecasts() {
     weatherServiceForecast.getAll().then(function (forecasts) {
