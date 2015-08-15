@@ -4,6 +4,7 @@ var heatIndex = require('heat-index'),
     getLocalTimeAtLocation = require('../get-local-time-at-location'),
     isDayTimeAtLocation = require('../is-day-time-at-location'),
     lookupWeatherIcon = require('../lookup-weather-icon'),
+    logger = require('../logger')(),
     formatForecastText = require('../format-forecast-text');
 
 module.exports = formatCurrentDayForecast;
@@ -17,6 +18,8 @@ function formatCurrentDayForecast(forecast, ianaTimeZoneDBName) {
             temperature: parseFloat(forecast.main.temp),
             humidity: parseInt(forecast.main.humidity, 10)
         });
+
+    logger.debug('formatCurrentDayForecast,  \'raw\' forecast data: ', forecast);
 
     return {
         forecastTime: getLocalTimeAtLocation(ianaTimeZoneDBName),

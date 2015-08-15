@@ -3,23 +3,19 @@
 var Promise = require('bluebird'),
     config = require('config'),
 
-    // Use 'request-retry' instead of (e.g.) 'request-promise' to better deal with
-    // various network errors, such as 'ESOCKETTIMEDOUT'.
-    // Put a promise wrapper around 'request-retry' since using the node callback style format.
-    request = Promise.promisify(require('requestretry')),
-
     forecastContainer = require('../forecast-container')(),
     formatFutureForecast = require('./format-future-forecast'),
     logger = require('../logger')(),
+    xhrFetch = require('../xhr-request-retry'),
 
+    openWeatherMapAppId = config.get('OpenWeatherMap.appId'),
     DAILY_FORECAST_BASE_URL = 'http://api.openweathermap.org/data/2.5/forecast/daily';
 
 
 module.exports = {
     getAll: function () {
         var cityIds = createCityIdArray(forecastContainer),
-            dailyForecastPromises = getDailyForecastsData(cityIds),
-            openWeatherMapAppId = config.get('OpenWeatherMap.appId');
+            dailyForecastPromises = getDailyForecastsData(cityIds);
 
         if (openWeatherMapAppId === 'demo') {
             logger.info('openWeatherMapAppId === \'demo\'');
@@ -45,8 +41,7 @@ module.exports = {
         var cityIds = [{
                 id: cityId
             }],
-            dailyForecastPromise = getDailyForecastsData(cityIds),
-            openWeatherMapAppId = config.get('OpenWeatherMap.appId');
+            dailyForecastPromise = getDailyForecastsData(cityIds);
 
         if (openWeatherMapAppId === 'demo') {
             logger.info('openWeatherMapAppId === \'demo\'');
@@ -84,41 +79,11 @@ function getDailyForecastsData(cityIds) {
 }
 
 function getDailyForecastsForCityId(id) {
-    return request({
-        // request-retry npm module specific params
-        url: DAILY_FORECAST_BASE_URL,
-        json: true,
-
-        // request npm module params
-        qs: {
-            id: id,
-            units: 'metric',
-            cnt: 9,
-            mode: 'json',
-            APPID: config.get('OpenWeatherMap.appId')
-        },
-        pool: {
-            // Fix for 'Error: socket hang up', caused by making several requests in a row.
-            maxSockets: Infinity
-        },
-        timeout: 5000,
-
-        // request-retry npm module specific params
-        maxAttempts: 5,
-        retryDelay: 2000
-    })
-        .spread(function(err, response) {
-            return response;
-
-        }, function (err) {
-            logger.error(err.message);
-        })
-        .catch(TypeError, ReferenceError, function (err) {
-            // will end up here on programmer error
-            logger.error(err.message);
-
-        }).catch(function (err) {
-            // catch any unexpected errors
-            logger.error(err.message);
-        });
+    return xhrFetch(DAILY_FORECAST_BASE_URL, {
+        id: id,
+        units: 'metric',
+        cnt: 9,
+        mode: 'json',
+        APPID: openWeatherMapAppId
+    });
 }
