@@ -55,6 +55,7 @@ app.get('/api/forecast/location/:cityId', function(request, response) {
         }
 
     }, function (error) {
+        response.sendStatus(500);
         logger.error(error);
     });
 });
