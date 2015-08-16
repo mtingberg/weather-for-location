@@ -3,6 +3,8 @@
 
 var express = require('express'),
     path = require('path'),
+    currentDayForecast = require('./backend/current-day-forecast/current-day-forecast'),
+    dailyForecasts = require('./backend/daily-forecasts/daily-forecasts'),
     weatherServiceForecast = require('./backend/weather-service-forecast'),
     config = require('config'),
     logger = require('./backend/logger')(),
@@ -23,7 +25,7 @@ updateCachedWeatherForecasts();
 setInterval(updateCachedWeatherForecasts, 1000 * 60 * 60);
 
 function updateCachedWeatherForecasts() {
-    weatherServiceForecast.getAll().then(function (forecasts) {
+    weatherServiceForecast.getAll(currentDayForecast, dailyForecasts).then(function (forecasts) {
         cachedWeatherForecasts = forecasts;
         logger.info('Forecasts retrieved from weather service.');
         logger.debug(cachedWeatherForecasts);
@@ -46,13 +48,14 @@ function getForecastsAsArray(forecastsObj) {
 app.get('/api/forecast/location/:cityId', function(request, response) {
     var cityId = request.params.cityId;
 
-    weatherServiceForecast.getForecastForLocation(cityId).then(function (forecast) {
-        if (forecast) {
-            response.send(forecast);
-        } else {
-            logger.warn('Lookup of /api/forecast/location/' + cityId + ' failed.');
-            response.sendStatus(404);
-        }
+    weatherServiceForecast.getForecastForLocation(cityId, currentDayForecast, dailyForecasts)
+        .then(function (forecast) {
+            if (forecast) {
+                response.send(forecast);
+            } else {
+                logger.warn('Lookup of /api/forecast/location/' + cityId + ' failed.');
+                response.sendStatus(404);
+            }
 
     }, function (error) {
         response.sendStatus(500);

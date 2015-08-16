@@ -1,8 +1,6 @@
 'use strict';
 
 var Promise = require('bluebird'),
-    currentDayForecast = require('./current-day-forecast/current-day-forecast'),
-    dailyForecasts = require('./daily-forecasts/daily-forecasts'),
     forecastContainer = require('./forecast-container')(),
     moment = require('moment'),
     logger = require('./logger')(),
@@ -13,7 +11,8 @@ var Promise = require('bluebird'),
 
 
 module.exports = {
-    getAll: function () {
+    // Inject dependencies instead of require() to facilitate unit testing.
+    getAll: function (currentDayForecast, dailyForecasts) {
         var currentDayForecastPromise = currentDayForecast.getAll(),
             dailyForecastsPromise = dailyForecasts.getAll();
 
@@ -40,7 +39,8 @@ module.exports = {
             });
     },
 
-    getForecastForLocation: function (cityId) {
+    // Inject dependencies instead of require() to facilitate unit testing.
+    getForecastForLocation: function (cityId, currentDayForecast, dailyForecasts) {
         var currentDayForecastPromise,
             dailyForecastsPromise;
 

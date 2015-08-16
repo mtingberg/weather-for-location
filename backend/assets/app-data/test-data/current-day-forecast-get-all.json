@@ -1,0 +1,211 @@
+{
+    "260114": {
+        "location": {
+            "id": 260114,
+            "city": "Chania",
+            "country": "Greece",
+            "image": 260114
+        },
+        "currentDayForecast": {
+            "forecastTime": "2015-08-16T22:01:34",
+            "dayTemperature": 26,
+            "forecastText": "Few clouds",
+            "humidity": 78,
+            "windSpeed": 3,
+            "feelsLikeTemperature": 27,
+            "weatherIcon": "wi-night-alt-cloudy"
+        },
+        "futureForecasts": {},
+        "ianaTimeZoneDBName": "Europe/Athens"
+    },
+    "745044": {
+        "location": {
+            "id": 745044,
+            "city": "Istanbul",
+            "country": "Turkey",
+            "image": 745044
+        },
+        "currentDayForecast": {
+            "forecastTime": "2015-08-16T22:01:34",
+            "dayTemperature": 29,
+            "forecastText": "Few clouds",
+            "humidity": 45,
+            "windSpeed": 4,
+            "feelsLikeTemperature": 29,
+            "weatherIcon": "wi-night-alt-cloudy"
+        },
+        "futureForecasts": {},
+        "ianaTimeZoneDBName": "Europe/Istanbul"
+    },
+    "1277333": {
+        "location": {
+            "id": 1277333,
+            "city": "Bangalore",
+            "country": "India",
+            "image": 1277333
+        },
+        "currentDayForecast": {
+            "forecastTime": "2015-08-17T00:31:34",
+            "dayTemperature": 27,
+            "forecastText": "Broken clouds",
+            "humidity": 100,
+            "windSpeed": 3,
+            "feelsLikeTemperature": 33,
+            "weatherIcon": "wi-night-alt-cloudy"
+        },
+        "futureForecasts": {},
+        "ianaTimeZoneDBName": "Asia/Kolkata"
+    },
+    "1816670": {
+        "location": {
+            "id": 1816670,
+            "city": "Beijing",
+            "country": "China",
+            "image": 1816670
+        },
+        "currentDayForecast": {
+            "forecastTime": "2015-08-17T03:01:34",
+            "dayTemperature": 27,
+            "forecastText": "Sky is clear",
+            "humidity": 83,
+            "windSpeed": 1,
+            "feelsLikeTemperature": 33,
+            "weatherIcon": "wi-night-clear"
+        },
+        "futureForecasts": {},
+        "ianaTimeZoneDBName": "Asia/Shanghai"
+    },
+    "1850147": {
+        "location": {
+            "id": 1850147,
+            "city": "Tokyo",
+            "country": "Japan",
+            "image": 1850147
+        },
+        "currentDayForecast": {
+            "forecastTime": "2015-08-17T04:01:34",
+            "dayTemperature": 25,
+            "forecastText": "Light rain",
+            "humidity": 88,
+            "windSpeed": 4,
+            "feelsLikeTemperature": 26,
+            "weatherIcon": "wi-night-alt-sprinkle"
+        },
+        "futureForecasts": {},
+        "ianaTimeZoneDBName": "Asia/Tokyo"
+    },
+    "2147714": {
+        "location": {
+            "id": 2147714,
+            "city": "Sydney",
+            "country": "Australia",
+            "image": 2147714
+        },
+        "currentDayForecast": {
+            "forecastTime": "2015-08-17T05:01:34",
+            "dayTemperature": 9,
+            "forecastText": "Sky is clear",
+            "humidity": 62,
+            "windSpeed": 5,
+            "feelsLikeTemperature": 8,
+            "weatherIcon": "wi-night-clear"
+        },
+        "futureForecasts": {},
+        "ianaTimeZoneDBName": "Australia/Sydney"
+    },
+    "2643743": {
+        "location": {
+            "id": 2643743,
+            "city": "London",
+            "country": "United Kingdom",
+            "image": 2643743
+        },
+        "currentDayForecast": {
+            "forecastTime": "2015-08-16T20:01:34",
+            "dayTemperature": 17,
+            "forecastText": "Sky is clear",
+            "humidity": 59,
+            "windSpeed": 2,
+            "feelsLikeTemperature": 17,
+            "weatherIcon": "wi-day-sunny"
+        },
+        "futureForecasts": {},
+        "ianaTimeZoneDBName": "Europe/London"
+    },
+    "3435910": {
+        "location": {
+            "id": 3435910,
+            "city": "Buenos Aires",
+            "country": "Argentina",
+            "image": 3435910
+        },
+        "currentDayForecast": {
+            "forecastTime": "2015-08-16T16:01:34",
+            "dayTemperature": 16,
+            "forecastText": "Sky is clear",
+            "humidity": 45,
+            "windSpeed": 4,
+            "feelsLikeTemperature": 15,
+            "weatherIcon": "wi-day-sunny"
+        },
+        "futureForecasts": {},
+        "ianaTimeZoneDBName": "America/Argentina/Buenos_Aires"
+    },
+    "3451190": {
+        "location": {
+            "id": 3451190,
+            "city": "Rio de Janeiro",
+            "country": "Brazil",
+            "image": 3451190
+        },
+        "currentDayForecast": {
+            "forecastTime": "2015-08-16T16:01:34",
+            "dayTemperature": 28,
+            "forecastText": "Few clouds",
+            "humidity": 54,
+            "windSpeed": 5,
+            "feelsLikeTemperature": 30,
+            "weatherIcon": "wi-day-sunny-overcast"
+        },
+        "futureForecasts": {},
+        "ianaTimeZoneDBName": "America/Sao_Paulo"
+    },
+    "5128581": {
+        "location": {
+            "id": 5128581,
+            "city": "New York",
+            "country": "United States",
+            "image": 5128581
+        },
+        "currentDayForecast": {
+            "forecastTime": "2015-08-16T15:01:34",
+            "dayTemperature": 31,
+            "forecastText": "Sky is clear",
+            "humidity": 46,
+            "windSpeed": 2,
+            "feelsLikeTemperature": 33,
+            "weatherIcon": "wi-day-sunny"
+        },
+        "futureForecasts": {},
+        "ianaTimeZoneDBName": "America/New_York"
+    },
+    "5391959": {
+        "location": {
+            "id": 5391959,
+            "city": "San Francisco",
+            "country": "United States",
+            "image": 5391959
+        },
+        "currentDayForecast": {
+            "forecastTime": "2015-08-16T12:01:34",
+            "dayTemperature": 31,
+            "forecastText": "Haze",
+            "humidity": 51,
+            "windSpeed": 2,
+            "feelsLikeTemperature": 34,
+            "weatherIcon": "wi-day-haze"
+        },
+        "futureForecasts": {},
+        "ianaTimeZoneDBName": "America/Los_Angeles"
+    }
+}
