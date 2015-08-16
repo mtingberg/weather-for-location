@@ -16,8 +16,9 @@ module.exports = isDayTimeAtLocation;
     the previous day).
  */
 
-function isDayTimeAtLocation(params) {
-    var localTimeAtLocation = createMomentBasedOnLocalTimeAtLocation(params.ianaTimeZoneDBName),
+// Inject 'getLocalTimeAtLocation' as a dependency for unit testing purposes.
+function isDayTimeAtLocation(params, getLocalTimeAtLocation) {
+    var localTimeAtLocation = getLocalTimeAtLocation(params.ianaTimeZoneDBName),
         sunrise = createMomentBasedOnUnixTimestamp(params.sunrise, params.ianaTimeZoneDBName),
         sunset = createMomentBasedOnUnixTimestamp(params.sunset, params.ianaTimeZoneDBName);
 
@@ -25,17 +26,9 @@ function isDayTimeAtLocation(params) {
     sunrise = forceTimeToCurrentDate(sunrise);
     sunset = forceTimeToCurrentDate(sunset);
 
-    return localTimeAtLocation.isBetween(sunrise, sunset);
-}
+//    console.log(localTimeAtLocation.format('DD/MM HH:mm:ss'), params.sunrise, sunrise.format('DD/MM HH:mm:ss'), params.sunset, sunset.format('DD/MM HH:mm:ss'));
 
-function createMomentBasedOnLocalTimeAtLocation(ianaTimeZoneDBName) {
-    if (!ianaTimeZoneDBName) {
-        // The 'IANA TimeZone Database name' is only set for predefined locations
-        // (and is set to 'undefined' for the current gps location).
-        return momentTZ();
-    } else {
-        return momentTZ().tz(ianaTimeZoneDBName);
-    }
+    return localTimeAtLocation.isBetween(sunrise, sunset);
 }
 
 function createMomentBasedOnUnixTimestamp(timestamp, ianaTimeZoneDBName) {
@@ -50,7 +43,6 @@ function createMomentBasedOnUnixTimestamp(timestamp, ianaTimeZoneDBName) {
 
     return localTimeAtLocationMoment;
 }
-
 
 function forceTimeToCurrentDate(timeMoment) {
     var today = momentTZ();
