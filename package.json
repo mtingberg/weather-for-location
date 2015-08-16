@@ -55,7 +55,7 @@
     "sinon": "1.15.4"
   },
   "scripts": {
-    "test": "mocha --reporter spec backend/*.test.js"
+    "test": "mocha --reporter spec backend/**/*.test.js"
   },
   "engines": {
     "node": ">=0.10.0"
