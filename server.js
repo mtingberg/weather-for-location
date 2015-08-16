@@ -59,12 +59,11 @@ app.get('/api/forecast/location/:cityId', function(request, response) {
     });
 });
 
-app.get('/api/forecast/predefined/location/:cityId', function(request, response, next) {
+app.get('/api/forecast/predefined/location/:cityId', function(request, response) {
     var cityId = request.params.cityId.toLowerCase();   // In case of non-numeric 'cityId' param.
 
     if (cityId === 'all') {
         response.send(getForecastsAsArray(cachedWeatherForecasts));
-        next();
 
     } else {
         if (!cachedWeatherForecasts[cityId]) {
@@ -72,18 +71,16 @@ app.get('/api/forecast/predefined/location/:cityId', function(request, response,
             response.sendStatus(404);
         } else {
             response.send(cachedWeatherForecasts[cityId]);
-            next();
         }
     }
 });
 
-app.get('/api/forecast/predefined/location/:cityId/:section', function(request, response, next) {
+app.get('/api/forecast/predefined/location/:cityId/:section', function(request, response) {
     var cityId = request.params.cityId.toLowerCase(),
         section = request.params.section;
 
     if (cachedWeatherForecasts[cityId] && cachedWeatherForecasts[cityId][section]) {
         response.send(cachedWeatherForecasts[cityId][section]);
-        next();
     } else {
         logger.warn('Lookup of /api/forecast/predefined/location/' + cityId + '/' + section + ' failed.');
         response.sendStatus(404);
