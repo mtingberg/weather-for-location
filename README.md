@@ -1,7 +1,25 @@
 # Weather for location
 
+## Table of contents
+
+* [Overview](#overview)
+
+* [Prerequisites](#prerequisites)
+
+* [Installing](#installing)
+
+* [Building](#building)
+
+* [Releasing](#releasing)
+
+* [Acknowledgements](#acknowledgements)
+
+
+## Overview
+
 *Weather for location* shows the current weather and an 8 day forecast for the current (gps) location
 and a number of predefined international locations.
+
 The application consists of an Angular.js 1.x frontend, together with a Node.js Express 5.x backend.
 [Open Weather Maps](http://openweathermap.org/api) is used for retrieving weather forecasts. [Weather
 icons](http://erikflowers.github.io/weather-icons/) by [Eric Flowers](http://www.twitter.com/Erik_UX).
@@ -35,7 +53,9 @@ for the frontend and presented via a REST-like interface.
 * Open Weather Maps's (multitude of) weather conditions codes mapped to available weather icons.
 * Time zone management for showing correct local time for the respective location in the dashboard view.
 * Daytime or night time weather icon displayed depending on whether it is daytime hours at the
-respective location.
+  respective location.
+* Unit tests using [Mocha](https://www.npmjs.com/package/mocha), [Chai](https://www.npmjs.com/package/chai)
+and [Sinon](https://www.npmjs.com/package/sinon).
 
 
 ### Environment
@@ -65,15 +85,40 @@ from the application code.
 a certain feature is grouped into a single directory.
 * The design (as far as it makes sense) adheres to the
 [browserify handbook's module philosophy](https://github.com/substack/browserify-handbook#module-philosophy)
-with lean modules that performs a single well defined thing only.
+with lean high cohesion modules (i.e. with single well defined responsibilities).
 * The frontend is built with modern browsers in mind and hence requires IE 11 or later to work correctly.
 
 
 ## Prerequisites
 
+### Development and runtime environment
+
 `Node.js` version 0.10.x or later. [Install instructions](https://nodejs.org/download/).
 
 `Grunt.js` version 0.4.5 or later. [Install instructions](http://gruntjs.com/getting-started).
+
+This project uses the [the gitflow model](http://nvie.com/posts/a-successful-git-branching-model/).
+Installing the [gitflow git extension](https://github.com/nvie/gitflow):
+
+```bash
+$ sudo apt-get install git-flow
+$ git flow init    # Accept default option for all questions, except version tag prefix - input a single letter `v`.
+```
+
+### Weather service API key
+
+Create a new file `local.json` under `<repo root dir>/config` with the following content:
+
+```json
+{
+    "OpenWeatherMap": {
+        "appId": "<Open Weather Map API key>"
+    }
+}
+```
+
+For being able to retrieve forecasts from the [Open Weather Map](http://openweathermap.org/) weather service
+it is necessary to [sign up](http://openweathermap.org/appid) for a (free) API key.
 
 
 ## Installing
@@ -127,23 +172,12 @@ Same as `server-release` but with no live reload
 $ grunt server-release-nlr
 ```
 
-## Git Workflow
-
-This project uses the [the git-flow model](http://nvie.com/posts/a-successful-git-branching-model/).
-For tooling please see the [gitflow](https://github.com/nvie/gitflow) git extensions.
-
-```bash
-$ sudo apt-get install git-flow
-$ git flow init                   # answer default to all questions, except version tag prefix. Answer a single letter `v`.
-```
-
-
-## Release Procedure
+## Releasing
 
 ### Before you start
 
-Open `gitk` and keep it open during the entire release, refreshing it between every command,
-so you can follow along and see what's happening.
+It is suggested to keep `gitk` open during the release process to see what happens after each step
+(i.e. press refresh in `gitk` after each command).
 
 ```bash
 $ gitk --all &
