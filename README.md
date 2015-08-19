@@ -97,6 +97,12 @@ with lean high cohesion modules (i.e. with single well defined responsibilities)
 
 `Grunt.js` version 0.4.5 or later. [Install instructions](http://gruntjs.com/getting-started).
 
+`Mocha.js` installed globally. (In case of permission problems, try `sudo` npm install ...).
+
+```bash
+$ npm install -g mocha
+```
+
 This project uses the [the gitflow model](http://nvie.com/posts/a-successful-git-branching-model/).
 Installing the [gitflow git extension](https://github.com/nvie/gitflow):
 
