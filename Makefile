@@ -16,6 +16,7 @@ install: node_modules
 
 release: $(GRUNT_BIN) caniuse-db node_modules
 	$(GRUNT_BIN) build-release
+	npm run test
 	cp -R backend dist
 	cp -R bin dist
 
