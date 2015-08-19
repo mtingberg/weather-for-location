@@ -45,7 +45,7 @@ function getForecastsAsArray(forecastsObj) {
 }
 
 
-app.get('/api/forecast/location/:cityId', function(request, response) {
+app.get('/api/forecast/location/:cityId', function (request, response) {
     var cityId = request.params.cityId;
 
     weatherServiceForecast.getForecastForLocation(cityId, currentDayForecast, dailyForecasts)
@@ -57,13 +57,13 @@ app.get('/api/forecast/location/:cityId', function(request, response) {
                 response.sendStatus(404);
             }
 
-    }, function (error) {
-        response.sendStatus(500);
-        logger.error(error);
-    });
+        }, function (error) {
+            response.sendStatus(500);
+            logger.error(error);
+        });
 });
 
-app.get('/api/forecast/predefined/location/:cityId', function(request, response) {
+app.get('/api/forecast/predefined/location/:cityId', function (request, response) {
     var cityId = request.params.cityId.toLowerCase();   // In case of non-numeric 'cityId' param.
 
     if (cityId === 'all') {
@@ -79,7 +79,7 @@ app.get('/api/forecast/predefined/location/:cityId', function(request, response)
     }
 });
 
-app.get('/api/forecast/predefined/location/:cityId/:section', function(request, response) {
+app.get('/api/forecast/predefined/location/:cityId/:section', function (request, response) {
     var cityId = request.params.cityId.toLowerCase(),
         section = request.params.section;
 
