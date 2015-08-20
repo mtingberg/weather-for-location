@@ -41,6 +41,7 @@ and [caniuse-db](https://www.npmjs.com/package/caniuse-db).
 * Location images for the respective international location.
 * Weather forecast data consumed from the backend using angular.js's [$http service](https://docs.angularjs.org/api/ng/service/$http).
 * Check performed on application startup for Open Weather Maps service availability.
+* Unit tests using [Jasmine](http://jasmine.github.io/) and [Karma](http://karma-runner.github.io/).
 
 
 ### Backend
