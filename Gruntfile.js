@@ -269,6 +269,18 @@ module.exports = function (grunt) {
         },
 
         // ----------------------------
+        // unit testing
+        // ----------------------------
+
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                autoWatch: false,
+                singleRun: true
+            }
+        },
+
+        // ----------------------------
         // background build tasks
         // ----------------------------
 
@@ -332,6 +344,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build-release', 'Create a production build (all build steps)', [
         'clean',
+        'test',
         'jshint',
         'less',
         'postcss',
@@ -369,6 +382,8 @@ module.exports = function (grunt) {
         'connect:no_live_reload',
         'watch:buildRelease'
     ]);
+
+    grunt.registerTask('test', ['karma:unit']);
 
     grunt.registerTask('default', 'Default task', ['jshint']);
 };
