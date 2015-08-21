@@ -25,13 +25,16 @@
                 justify-content: center;
 
                 .df-forecast-date {
-                    color: #fefcff;
-                    margin-bottom: 0.8rem;
+                    display: none;
                 }
 
                 .df-forecast-time {
+                    display: none;
+                }
+
+                .df-forecast-date-time {
                     color: #fefcff;
-                    margin-bottom: 0.8rem;
+                    margin-bottom: 2.1rem;
                 }
 
                 .df-temperature {
@@ -51,7 +54,7 @@
                     align-items: center;
 
                     text-align: center;
-                    margin: 0.5rem 1rem 0 1rem;
+                    margin: 0.5rem 1rem 0.3rem 1rem;
                     padding-bottom: 1rem;
 
                     .df-detail-container {
@@ -114,16 +117,27 @@
             display: inline-block;
             width: 25%;
 
-            .df-date {
+            .df-date-short {
                 padding: 0.3rem 0;
                 font-size: 0.75rem;
                 text-transform: uppercase;
             }
 
-            .df-time {
+            .df-date {
                 display: none;
+                /*
                 padding: 0.3rem 0;
                 font-size: 0.75rem;
+                text-transform: uppercase;
+                */
+            }
+
+            .df-time {
+                display: none;
+                /*
+                padding: 0.3rem 0;
+                font-size: 0.75rem;
+                */
             }
 
             .df-day-details-container {
@@ -155,7 +169,46 @@
             height: 0;
         }
 
+        .df-location-container {
+            .df-top-banner {
+                background-image: none !important;
+
+                .df-current-weather-container {
+                    .df-temperature {
+                        line-height: 6rem;
+                    }
+
+                    .df-forecast-text {
+                        padding-bottom: 0.4rem;
+                        margin-top: -0.4rem;
+                    }
+                }
+            }
+
+            .df-location-picture {
+                .df-forecast-icon {
+                    margin-top: 2.6rem;
+                    line-height: 2rem;
+                    font-size: 5.8rem;
+                }
+            }
+        }
+
         ul.df-daily-forecasts-container {
+            .df-day {
+                .df-day-details-container {
+                    padding: 0.5rem 0 0.1rem 0;
+
+                    .df-day-temperature {
+                        font-size: 0.85rem;
+                    }
+
+                    .df-day-forecast-text {
+                        display: none;
+                    }
+                }
+            }
+
             li:nth-child(4n+1) {
                 .df-date {
                     background-color: #1A484D;
@@ -236,15 +289,21 @@
                     padding: 0.7rem;
 
                     .df-forecast-date {
+                        display: block;
                         color: #fff;
                         font-size: 1.2rem;
                         margin: 0 0 0.2rem 0;
                     }
 
                     .df-forecast-time {
+                        display: block;
                         color: #fff;
                         font-size: 1.3rem;
                         margin: 0 0 0.4rem 0;
+                    }
+
+                    .df-forecast-date-time {
+                        display: none;
                     }
 
                     .df-temperature {
@@ -256,7 +315,7 @@
                     .df-forecast-text {
                         color: #fff;
                         font-size: 1.2rem;
-                        padding: 0;
+                        margin: -0.7rem 0 0 0;;
                     }
 
                     .df-current-details-container {
@@ -284,7 +343,13 @@
                 width: 25%;
                 color: #6e7184;
 
+                .df-date-short {
+                    display: none;
+                }
+
                 .df-date {
+                    display: block;
+                    font-size: 0.75rem;
                     padding: 0;
                     margin: 1.5rem 0 0.2rem 0;
                     text-transform: none;
