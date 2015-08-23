@@ -96,6 +96,12 @@ with lean high cohesion modules (i.e. with single well defined responsibilities)
 
 `Node.js` version 0.10.x or later. [Install instructions](https://nodejs.org/download/).
 
+Optional, however recommended - update npm to the most recent version:
+
+```bash
+$ sudo npm install npm -g
+```
+
 `Grunt.js` version 0.4.5 or later. [Install instructions](http://gruntjs.com/getting-started).
 
 `Mocha.js` installed globally. (In case of permission problems, try `sudo` npm install ...).
