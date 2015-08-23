@@ -1,0 +1,17 @@
+{
+    "currentDayForecast": {
+        "forecastTime": "2015-08-16T21:10:54",
+        "dayTemperature": 20,
+        "forecastText": "Sky is clear",
+        "humidity": 68,
+        "windSpeed": 9,
+        "feelsLikeTemperature": 20,
+        "weatherIcon": "wi-night-clear"
+    },
+    "location": {
+        "id": 2693555,
+        "city": "Lunds Kommun",
+        "country": "Sweden",
+        "image": 2693555
+    }
+}

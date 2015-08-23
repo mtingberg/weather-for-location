@@ -1,10 +1,9 @@
 'use strict';
 
 var Promise = require('bluebird'),
-    currentDayForecast = require('./current-day-forecast'),
-    dailyForecasts = require('./daily-forecasts'),
     forecastContainer = require('./forecast-container')(),
     moment = require('moment'),
+    logger = require('./logger')(),
 
     cachedLocationForecast = null,
     cachedLocationForecastTimestamp = undefined,
@@ -12,7 +11,8 @@ var Promise = require('bluebird'),
 
 
 module.exports = {
-    getAll: function () {
+    // Inject dependencies instead of require() to facilitate unit testing.
+    getAll: function (currentDayForecast, dailyForecasts) {
         var currentDayForecastPromise = currentDayForecast.getAll(),
             dailyForecastsPromise = dailyForecasts.getAll();
 
@@ -35,11 +35,12 @@ module.exports = {
                 return forecastContainer;
 
             }).catch(function (error) {
-                console.error(error.message);
+                logger.error(error.message);
             });
     },
 
-    getForecastForLocation: function (cityId) {
+    // Inject dependencies instead of require() to facilitate unit testing.
+    getForecastForLocation: function (cityId, currentDayForecast, dailyForecasts) {
         var currentDayForecastPromise,
             dailyForecastsPromise;
 
@@ -70,7 +71,7 @@ module.exports = {
                     return cachedLocationForecast;
 
                 }).catch(function (error) {
-                    console.error(error.message);
+                    logger.error(error.message);
                 });
         }
     }

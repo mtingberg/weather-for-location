@@ -1,9 +1,6 @@
 'use strict';
 
-var unixTimestamp = require('unix-timestamp'),
-    getLocalTimeAtLocation = require('./get-local-time-at-location'),
-    momentTZ = require('moment-timezone');
-
+var momentTZ = require('moment-timezone');
 
 module.exports = isDayTimeAtLocation;
 
@@ -14,35 +11,45 @@ module.exports = isDayTimeAtLocation;
     local time is between sunrise and sunset, uses a certain level of simplification.
 
     Since the time of sunrise and sunset returned from the weather service is related to the date
-    of the forecast, only the time part only is used for the calculation (and may differ a minute
-    or two in case of the forecast is related to the previous day).
-
-    I.e.: only the hour, minutes and seconds part, of the local: 'current time', 'sunrise' and
-    'sunset' is used for the calculation.
+    of the forecast, these are forced to the current date to be aligned with the local time at
+    the given location (and hence may differ slightly in case the forecast was created during
+    the previous day).
  */
 
-function isDayTimeAtLocation(params) {
-    var localTimeAtLocation = createMomentBasedOnTimePartOfLocalTimeAtLocation(params.ianaTimeZoneDBName),
-        sunrise = createMomentBasedOnTimePartOfUnixTimestamp(params.sunrise, params.ianaTimeZoneDBName),
-        sunset = createMomentBasedOnTimePartOfUnixTimestamp(params.sunset, params.ianaTimeZoneDBName);
+// Inject 'getLocalTimeAtLocation' as a dependency for unit testing purposes.
+function isDayTimeAtLocation(params, getLocalTimeAtLocation) {
+    var localTimeAtLocation = getLocalTimeAtLocation(params.ianaTimeZoneDBName),
+        sunrise = createMomentBasedOnUnixTimestamp(params.sunrise, params.ianaTimeZoneDBName),
+        sunset = createMomentBasedOnUnixTimestamp(params.sunset, params.ianaTimeZoneDBName);
 
-    return momentTZ(localTimeAtLocation).isBetween(sunrise, sunset);
+    localTimeAtLocation = forceTimeToCurrentDate(localTimeAtLocation);
+    sunrise = forceTimeToCurrentDate(sunrise);
+    sunset = forceTimeToCurrentDate(sunset);
+
+//    console.log(localTimeAtLocation.format('DD/MM HH:mm:ss'), params.sunrise, sunrise.format('DD/MM HH:mm:ss'), params.sunset, sunset.format('DD/MM HH:mm:ss'));
+
+    return localTimeAtLocation.isBetween(sunrise, sunset);
 }
 
-function createMomentBasedOnTimePartOfLocalTimeAtLocation(ianaTimeZoneDBName) {
-    var localTimeAtLocationWithoutDate =
-            momentTZ(getLocalTimeAtLocation(ianaTimeZoneDBName)).format('HH:mm:ss'),
+function createMomentBasedOnUnixTimestamp(timestamp, ianaTimeZoneDBName) {
+    var momentFromUnixTimestamp = momentTZ.unix(timestamp),
+        localTimeAtLocationMoment = momentFromUnixTimestamp;
 
-        momentFromTimePartOnly = momentTZ(localTimeAtLocationWithoutDate, 'HH:mm:ss');
+    // The 'IANA TimeZone Database name' is only set for predefined locations
+    // (and is set to 'undefined' for the current gps location).
+    if (ianaTimeZoneDBName) {
+        localTimeAtLocationMoment = momentFromUnixTimestamp.tz(ianaTimeZoneDBName);
+    }
 
-    return momentFromTimePartOnly;
+    return localTimeAtLocationMoment;
 }
 
-function createMomentBasedOnTimePartOfUnixTimestamp(timestamp, ianaTimeZoneDBName) {
-    var localTimeAtLocationWithoutDate =
-            momentTZ.tz(unixTimestamp.toDate(timestamp), ianaTimeZoneDBName).format('HH:mm:ss'),
+function forceTimeToCurrentDate(timeMoment) {
+    var today = momentTZ();
 
-        momentFromTimePartOnly = momentTZ(localTimeAtLocationWithoutDate, 'HH:mm:ss');
+    timeMoment.set('year', today.get('year'));
+    timeMoment.set('month', today.get('month'));
+    timeMoment.set('date', today.get('date'));
 
-    return momentFromTimePartOnly;
+    return timeMoment;
 }

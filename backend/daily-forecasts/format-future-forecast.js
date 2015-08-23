@@ -1,14 +1,17 @@
 'use strict';
 
 var unixTimestamp = require('unix-timestamp'),
-    isDayTime = require('./is-day-time'),
-    lookupWeatherIcon = require('./lookup-weather-icon'),
-    formatForecastText = require('./format-forecast-text');
+    isDayTime = require('../is-day-time'),
+    lookupWeatherIcon = require('../lookup-weather-icon'),
+    logger = require('../logger')(),
+    formatForecastText = require('../format-forecast-text');
 
 module.exports = formatFutureForecast;
 
 function formatFutureForecast(forecast) {
     var forecastsStartingFromNextDay = removeCurrentDayForecast(forecast);
+
+    logger.debug('formatFutureForecast, \'raw\' forecast data: ', forecast);
 
     return forecastsStartingFromNextDay.list.map(function (elem) {
         var weatherConditionCode = elem.weather[0].id,

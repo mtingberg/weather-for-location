@@ -154,6 +154,83 @@
 }
 
 @media all and (max-width: 349px) {
+    .db-wrapper {
+        margin: 0;
+
+        .db-header {
+            height: 3.8rem;
+            padding: 1.2rem 0 0 1.4rem;
+        }
+
+        .db-locations-container {
+            .db-location-forecast {
+                a.location-link {
+                    .db-location-image-container {
+                        width: 50%;
+                    }
+
+                    .db-forecast-icon-text-container {
+                        display: none
+                    }
+
+                    .db-temperature-container {
+                        width: 50%;
+                    }
+                }
+            }
+        }
+
+        .db-locations-container {
+            .db-location-forecast {
+                a.location-link {
+                    .db-location-image-container {
+                        height: 8.4rem;
+
+                        .db-current-details-container {
+                            display: none;
+                        }
+                    }
+
+                    .db-temperature-container {
+                        height: auto;
+
+                        .db-temperature {
+                            font-size: 2.5rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .db-locations-container {
+            .db-location-forecast:nth-child(odd) {
+                .db-location-image-container {
+                    order: 1;
+                }
+
+                .db-temperature-container {
+                    order: 2;
+                }
+            }
+        }
+
+        .db-locations-container {
+            .db-location-forecast:nth-child(even) {
+                .db-location-image-container {
+                    order: 2;
+                }
+
+                .db-temperature-container {
+                    order: 1;
+                }
+            }
+        }
+
+        .db-footer {
+            height: 2.8rem;
+            background-color: #272E38;
+        }
+    }
 }
 
 @media all and (min-width: 350px) {

@@ -3,6 +3,7 @@
 var angular = require('angular');
 
 require('angular-route');
+require('angular-mocks');
 
 angular.module('app', [
     'ngRoute'

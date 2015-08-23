@@ -22,6 +22,10 @@
                     {{currentDayForecast.forecastTime | date:'HH:mm'}}
                 </div>
 
+                <div class="df-forecast-date-time">
+                    {{currentDayForecast.forecastTime | date:'EEE MMM dd HH:mm'}}
+                </div>
+
                 <div class="df-temperature">
                     {{currentDayForecast.dayTemperature}}°C
                 </div>
@@ -84,7 +88,7 @@
             </div>
         </div>
 
-        <div class="df-location-picture">
+        <div class="df-location-picture" wfl-background-image="{{location.image}}">
             <div class="df-forecast-icon">
                 <div class="wi {{currentDayForecast.weatherIcon}}"></div>
             </div>
@@ -95,6 +99,10 @@
         <li class="df-day" ng-repeat="day in futureForecasts">
             <div class="df-date">
                 {{day.forecastDate | date:'EEE MMM dd'}}
+            </div>
+
+            <div class="df-date-short">
+                {{day.forecastDate | date:'EEE dd'}}
             </div>
 
             <div class="df-time">

@@ -1,0 +1,41 @@
+{
+    "coord": {
+        "lon": -43.21,
+        "lat": -22.9
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "Sky is Clear",
+            "icon": "01n"
+        }
+    ],
+    "base": "cmc stations",
+    "main": {
+        "temp": 17.23,
+        "pressure": 1020,
+        "humidity": 82,
+        "temp_min": 15,
+        "temp_max": 20
+    },
+    "wind": {
+        "speed": 2.1,
+        "deg": 320
+    },
+    "clouds": {
+        "all": 0
+    },
+    "dt": 1439630205,
+    "sys": {
+        "type": 1,
+        "id": 4565,
+        "message": 0.0074,
+        "country": "BR",
+        "sunrise": 1439630262,
+        "sunset": 1439671027
+    },
+    "id": 3451190,
+    "name": "Rio de Janeiro",
+    "cod": 200
+}

@@ -1,0 +1,52 @@
+{
+    "futureForecasts": [
+        {
+            "forecastDate": "2015-08-17T11:00:00.000Z",
+            "weatherIcon": "wi-day-sunny",
+            "dayTemperature": 23,
+            "forecastText": "Sky is clear"
+        },
+        {
+            "forecastDate": "2015-08-18T11:00:00.000Z",
+            "weatherIcon": "wi-day-sunny",
+            "dayTemperature": 22,
+            "forecastText": "Sky is clear"
+        },
+        {
+            "forecastDate": "2015-08-19T11:00:00.000Z",
+            "weatherIcon": "wi-day-sunny",
+            "dayTemperature": 22,
+            "forecastText": "Sky is clear"
+        },
+        {
+            "forecastDate": "2015-08-20T11:00:00.000Z",
+            "weatherIcon": "wi-day-sunny",
+            "dayTemperature": 23,
+            "forecastText": "Sky is clear"
+        },
+        {
+            "forecastDate": "2015-08-21T11:00:00.000Z",
+            "weatherIcon": "wi-day-sunny",
+            "dayTemperature": 23,
+            "forecastText": "Sky is clear"
+        },
+        {
+            "forecastDate": "2015-08-22T11:00:00.000Z",
+            "weatherIcon": "wi-sprinkle",
+            "dayTemperature": 23,
+            "forecastText": "Light rain"
+        },
+        {
+            "forecastDate": "2015-08-23T11:00:00.000Z",
+            "weatherIcon": "wi-sprinkle",
+            "dayTemperature": 21,
+            "forecastText": "Light rain"
+        },
+        {
+            "forecastDate": "2015-08-24T11:00:00.000Z",
+            "weatherIcon": "wi-day-rain",
+            "dayTemperature": 17,
+            "forecastText": "Moderate rain"
+        }
+    ]
+}

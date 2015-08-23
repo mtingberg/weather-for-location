@@ -1,0 +1,42 @@
+{
+    "coord": {
+        "lon": 151.21,
+        "lat": -33.87
+    },
+    "weather": [
+        {
+            "id": 803,
+            "main": "Clouds",
+            "description": "broken clouds",
+            "icon": "04n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 14.31,
+        "pressure": 1029,
+        "humidity": 67,
+        "temp_min": 13.33,
+        "temp_max": 15
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 4.6,
+        "deg": 160
+    },
+    "clouds": {
+        "all": 75
+    },
+    "dt": 1439629735,
+    "sys": {
+        "type": 1,
+        "id": 8233,
+        "message": 0.0122,
+        "country": "AU",
+        "sunrise": 1439584469,
+        "sunset": 1439623520
+    },
+    "id": 2147714,
+    "name": "Sydney",
+    "cod": 200
+}

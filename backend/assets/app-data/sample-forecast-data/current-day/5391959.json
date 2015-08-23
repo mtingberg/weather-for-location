@@ -1,0 +1,41 @@
+{
+    "coord": {
+        "lon": -122.42,
+        "lat": 37.77
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "sky is clear",
+            "icon": "01n"
+        }
+    ],
+    "base": "cmc stations",
+    "main": {
+        "temp": 16.98,
+        "pressure": 1020,
+        "humidity": 83,
+        "temp_min": 13,
+        "temp_max": 21
+    },
+    "wind": {
+        "speed": 1.32,
+        "deg": 195.5
+    },
+    "clouds": {
+        "all": 1
+    },
+    "dt": 1439628421,
+    "sys": {
+        "type": 1,
+        "id": 226,
+        "message": 0.0076,
+        "country": "US",
+        "sunrise": 1439645124,
+        "sunset": 1439694128
+    },
+    "id": 5391959,
+    "name": "San Francisco",
+    "cod": 200
+}
