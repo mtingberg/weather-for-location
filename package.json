@@ -64,7 +64,8 @@
     "sinon-chai": "2.8.0"
   },
   "scripts": {
-    "test": "mocha --reporter spec backend/**/*.test.js"
+    "test": "mocha --reporter spec backend/**/*.test.js",
+    "watch-test": "mocha --watch --reporter spec backend/**/*.test.js"
   },
   "engines": {
     "node": ">=0.10.0"
