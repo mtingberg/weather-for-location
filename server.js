@@ -8,6 +8,7 @@ var express = require('express'),
     weatherServiceForecast = require('./backend/weather-service-forecast'),
     config = require('config'),
     logger = require('./backend/logger')(),
+    predefinedForecastLocations = require('./backend/assets/app-data/predefined-forecast-locations.json'),
     cachedWeatherForecasts = null;
 
 var app = express();
@@ -76,6 +77,20 @@ app.get('/api/forecast/predefined/location/:cityId', function (request, response
         } else {
             response.send(cachedWeatherForecasts[cityId]);
         }
+    }
+});
+
+app.get('/api/weather-service/is-available', function(request, response) {
+    var cityId = predefinedForecastLocations[0].id;
+
+    function isEmptyObject(obj) {
+        return Object.keys(obj).length === 0;
+    }
+
+    if (isEmptyObject(cachedWeatherForecasts[cityId].location)) {
+        response.sendStatus(404);
+    } else {
+        response.sendStatus(200);
     }
 });
 

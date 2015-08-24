@@ -8,26 +8,30 @@
 
 * [Installing](#installing)
 
-* [Building](#building)
+* [Development setup](#development-setup)
+
+* [Production setup](#production-setup)
 
 * [Releasing](#releasing)
+
+* [Troubleshooting](#troubleshooting)
 
 * [Acknowledgements](#acknowledgements)
 
 
 ## Overview
 
-*Weather for location* shows the current weather and an 8 day forecast for the current (gps) location
-and a number of predefined international locations.
+*Weather for location* shows the current weather together with an 8 day forecast for the current (gps)
+location and a number of predefined international locations.
 
 The application consists of an Angular.js 1.x frontend, together with a Node.js Express 5.x backend.
-[Open Weather Maps](http://openweathermap.org/api) is used for retrieving weather forecasts. [Weather
+[Open Weather Maps](http://openweathermap.org/api) is used for provisioning of weather forecasts. [Weather
 icons](http://erikflowers.github.io/weather-icons/) by [Eric Flowers](http://www.twitter.com/Erik_UX).
 Application UX design inspired by [STUDIOJQ](https://www.behance.net/JonathanQuintin)'s
 [Weather Dashboard Global Outlook](https://www.behance.net/gallery/Weather-Dashboard-Global-Outlook/12748107).
 
 The project adheres to the [The twelve-factor app methodology](http://12factor.net/)
-for building software-as-a-service apps, for the items applicable.
+for building software-as-a-service apps, for items applicable.
 
 ### Frontend
 * SPA (single page application).
@@ -38,7 +42,7 @@ for building software-as-a-service apps, for the items applicable.
 * CSS vendor prefixing managed via [grunt-postcss](https://github.com/nDmitry/grunt-postcss)
 and [caniuse-db](https://www.npmjs.com/package/caniuse-db).
 * CSS Flexbox.
-* Location images for the respective international location.
+* Location images for the respective international locations.
 * Weather forecast data consumed from the backend using angular.js's [$http service](https://docs.angularjs.org/api/ng/service/$http).
 * Check performed on application startup for Open Weather Maps service availability.
 * Unit tests using [Jasmine](http://jasmine.github.io/) and [Karma](http://karma-runner.github.io/).
@@ -47,14 +51,13 @@ and [caniuse-db](https://www.npmjs.com/package/caniuse-db).
 ### Backend
 * Weather forecast data retrieved from Open Weather Maps, then transformed into a format suitable
 for the frontend and presented via a REST-like interface.
-* Cached weather forecasts.
-* Node 0.10.x compatible (using bluebird for promises support).
+* Caching of weather forecasts.
+* Node 0.10.x compatible (using [Bluebird](https://github.com/petkaantonov/bluebird) for promises).
 * [Request-retry](https://www.npmjs.com/package/requestretry) for managing unreliable network connections.
 * [Winston](https://www.npmjs.com/package/winston) for configuring application logging levels.
-* Open Weather Maps's (multitude of) weather conditions codes mapped to available weather icons.
+* Open Weather Maps' (multitude of) weather conditions codes mapped to available weather icons.
 * Time zone management for showing correct local time for the respective location in the dashboard view.
-* Daytime or night time weather icon displayed depending on whether it is daytime hours at the
-  respective location.
+* Daytime or night time weather icon depending on whether it is daytime hours at the respective location.
 * Unit tests using [Mocha](https://www.npmjs.com/package/mocha), [Chai](https://www.npmjs.com/package/chai)
 and [Sinon](https://www.npmjs.com/package/sinon).
 
@@ -65,25 +68,24 @@ and [Sinon](https://www.npmjs.com/package/sinon).
 * `.jshintrc`, for most common jshint rules.
 
 ### General
-* [Npm](https://www.npmjs.com/) for dependency management.
+* [Npm](https://www.npmjs.com/) used for dependency management.
 * `Make` for creating deployment packages.
 * [Node-config](https://github.com/lorenwest/node-config) for keeping runtime configurations separate
 from the application code.
-* [Moment.js](http://momentjs.com/) for time and date management.
+* Date and time management using [Moment.js](http://momentjs.com/).
 
 ### Build system
 * [Grunt](http://gruntjs.com/) based build system.
-* Adding of browser prefixes according to specified browsers and versions (grunt-postcss).
+* Adding of vendor prefixes as part of the build process.
 * Revving of assets.
 * Moving of source maps from (browserify) bundle to separate file.
 * Uglifying of code.
 * Minifying of html, css and images.
 * Watching of source files.
-* Local connect web server.
 
 ### Design thoughts
-* The application is structured by feature, i.e. all code (js, markup, less, ...) for
-a certain feature is grouped into a single directory.
+* The application is structured by feature, i.e. code for a certain feature (js, markup, less, ...)
+is grouped into a single directory.
 * The design (as far as it makes sense) adheres to the
 [browserify handbook's module philosophy](https://github.com/substack/browserify-handbook#module-philosophy)
 with lean high cohesion modules (i.e. with single well defined responsibilities).
@@ -94,15 +96,32 @@ with lean high cohesion modules (i.e. with single well defined responsibilities)
 
 ### Development and runtime environment
 
+#### Node.js
+
 `Node.js` version 0.10.x or later. [Install instructions](https://nodejs.org/download/).
 
+#### Npm
+
+Npm is included in the Node.js installation. Npm is however updated more frequently than node.js,
+and hence it is recommended to update npm to the most recent version:
+
+```bash
+$ sudo npm install npm -g
+```
+
+#### Grunt.js
+
 `Grunt.js` version 0.4.5 or later. [Install instructions](http://gruntjs.com/getting-started).
+
+#### Mocha.js
 
 `Mocha.js` installed globally. (In case of permission problems, try `sudo` npm install ...).
 
 ```bash
 $ npm install -g mocha
 ```
+
+#### Gitflow
 
 This project uses the [the gitflow model](http://nvie.com/posts/a-successful-git-branching-model/).
 Installing the [gitflow git extension](https://github.com/nvie/gitflow):
@@ -114,6 +133,9 @@ $ git flow init    # Accept default option for all questions, except version tag
 
 ### Weather service API key
 
+For being able to retrieve forecasts from the [Open Weather Map](http://openweathermap.org/) weather service
+it is necessary to [sign up](http://openweathermap.org/appid) for a (free) API key.
+
 Create a new file `local.json` under `<repo root dir>/config` with the following content:
 
 ```json
@@ -124,10 +146,6 @@ Create a new file `local.json` under `<repo root dir>/config` with the following
 }
 ```
 
-For being able to retrieve forecasts from the [Open Weather Map](http://openweathermap.org/) weather service
-it is necessary to [sign up](http://openweathermap.org/appid) for a (free) API key.
-
-
 ## Installing
 
 Steps to perform after cloning the repo:
@@ -137,9 +155,23 @@ $ cd path/to/weather-for-location
 $ npm install
 ```
 
-## Building
+## Development setup
 
-### Development builds
+### Backend
+
+Start the backend server using nodemon (restarts the server on source code changes):
+
+```bash
+$ nodemon server.js
+```
+
+Run unit tests on source code changes (in a separate window):
+
+```bash
+$ npm run watch-test
+```
+
+### Frontend development builds
 
 Build during development (no optimizing):
 
@@ -147,19 +179,13 @@ Build during development (no optimizing):
 $ grunt build
 ```
 
-Start a local (connect) server on port 8888, with development build steps, live reload and watch.
+Watching and rebuilding the frontend on source code changes:
 
 ```bash
-$ grunt server
+$ grunt watch:build
 ```
 
-Same as `grunt server` but with no live reload
-
-```bash
-$ grunt server-nlr
-```
-
-### Production builds
+### Frontend production builds
 
 Build for production (all build steps):
 
@@ -167,52 +193,57 @@ Build for production (all build steps):
 $ grunt build-release
 ```
 
-Start a local (connect) server on port 8888, with release build steps, live reload and watch.
+Watching and creating production builds on source code changes:
 
 ```bash
-$ grunt server-release
+$ grunt watch:buildRelease
 ```
 
-Same as `server-release` but with no live reload
+## Production setup
+
+### Backend
+
+Start the backend server:
 
 ```bash
-$ grunt server-release-nlr
+$ node server.js
+```
+
+### Frontend production build
+
+Create a frontend production build (if not done so already):
+
+```bash
+$ grunt build-release
 ```
 
 ## Releasing
 
 ### Before you start
 
-It is suggested to keep `gitk` open during the release process to see what happens after each step
-(i.e. press refresh in `gitk` after each command).
-
-```bash
-$ gitk --all &
-```
-
-Fetch the latest stuff from the server.
+Fetch the latest content from the server.
 
 ```bash
 $ git fetch --prune
 ```
 
-Make sure your local `master` branch is at the same commit as `origin/master`. To force it there:
+Make sure your local `master` branch is at the same commit as `origin/master`:
 
 ```bash
 $ git checkout master
 $ git reset --hard origin/master
 ```
 
-Make sure your local `develop` branch is at the same commit as `origin/develop`. To force it there:
+Make sure your local `develop` branch is at the same commit as `origin/develop`:
 
 ```bash
 $ git checkout develop
 $ git reset --hard origin/develop
 ```
 
-### Start the release
+### Start the release process
 
-Example, for releasing `0.2.0`, e.g. after completing Sprint 2:
+For releasing e.g. version `0.2.0`:
 
 ```bash
 $ git flow release start 0.2.0
@@ -220,25 +251,22 @@ $ git flow release start 0.2.0
 
 ### Bump version
 
-Then, update this project's version in `package.json` (and any `bower.json` to `0.2.0`).
-That version string means _the finished release of Sprint 2_. This exact version string
-must only exist in one single commit (the one with the git tag `v0.2.0` created by `git flow`).
-For the released version not to be mistaken by any other variation of the app.
+Then, update the`package.json` `version` field. The version string should exist in one
+single commit only (the one with the git tag `v0.2.0` created by `git flow`),
+in order for the released version not to be mistaken by any other variation of the app.
 
 ```bash
 $ git commit -am 'Bump version to 0.2.0.'
 $ git flow release finish 0.2.0
-$ git checkout develop 	# if not on the develop branch already
 ```
 
-Then, update this project's version in `package.json` and any `bower.json` to `0.3.0-alpha`.
-That version string means _a version which will become `0.3.0`, but is not finished yet_.
+Then update the `version` field in the `develop`  branch's `package.json`, to the next
+planned version increment, with the extension `-alpha`. In this case `0.3.0-alpha`.
 
 ```bash
+$ git checkout develop 	# if not on the develop branch already
 $ git commit -am 'Bump version to 0.3.0-alpha.'
 ```
-
-Note: do not push `develop` at this point.
 
 ### Verify
 
@@ -264,6 +292,25 @@ $ git push origin master v0.2.0
 ```bash
 $ git push origin develop
 ```
+
+
+## Troubleshooting
+
+### Retrieving weather forecasts
+
+#### Cannot retrieve weather forecasts when starting the backend server
+
+The backend server is started from the command line and does not use web browser
+proxy settings. In case of being behind e.g. a corporate proxy it is necessary
+to  tunnel the traffic through the proxy (which may or may not be an acceptable
+solution in your organization).
+
+
+#### Retrieving weather forecasts suddenly stops working
+
+The weather service used by the application has proven not to be entirely predictable.
+In case of unexpected errors, check your network connection, or try again in a
+little while.
 
 
 ## Acknowledgements

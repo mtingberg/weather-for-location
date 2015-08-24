@@ -9,6 +9,7 @@ angular.module('app', [
     'ngRoute'
 ]);
 
+require('./weather-service');
 require('./location-service');
 require('./current-location-forecast-service');
 require('./predefined-locations-forecast-service');
@@ -23,29 +24,41 @@ require('./common-directives/wfl-dots-separator');
 require('./common-directives/wfl-background-image');
 
 // Define routing for the application
-angular.module('app').config(function ($routeProvider) {
-    $routeProvider
-        .when('/', {
-            templateUrl: 'dashboard/view.html',
+angular.module('app')
+    .config(function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'dashboard/view.html',
 
-            // Initialize services at app startup, see:
-            //
-            // http://stackoverflow.com/questions/16286605/initialize-angularjs-service-with-asynchronous-data
-            // http://plnkr.co/edit/GKg21XH0RwCMEQGUdZKH?p=preview
-            // http://odetocode.com/blogs/scott/archive/2014/05/20/using-resolve-in-angularjs-routes.aspx
-            resolve: {
-                'currentLocationForecastServiceData': function (currentLocationForecastService) {
-                    return currentLocationForecastService.forecastPromise;
-                },
-                'predefinedLocationsForecastServiceData': function (predefinedLocationsForecastService) {
-                    return predefinedLocationsForecastService.forecastPromise;
+                // Initialize services at app startup, see:
+                //
+                // http://stackoverflow.com/questions/16286605/initialize-angularjs-service-with-asynchronous-data
+                // http://plnkr.co/edit/GKg21XH0RwCMEQGUdZKH?p=preview
+                // http://odetocode.com/blogs/scott/archive/2014/05/20/using-resolve-in-angularjs-routes.aspx
+                resolve: {
+                    'currentLocationForecastServiceData': function (currentLocationForecastService) {
+                        return currentLocationForecastService.forecastPromise;
+                    },
+                    'predefinedLocationsForecastServiceData': function (predefinedLocationsForecastService) {
+                        return predefinedLocationsForecastService.forecastPromise;
+                    }
                 }
+            })
+            .when('/daily-forecast/:id', {
+                templateUrl: 'daily-forecast/view.html'
+            })
+            .when('/connection-failed', {
+                templateUrl: 'connection-failed.html'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    })
+
+    .run(function(weatherService, $location) {
+        weatherService.isAvailable().then(function (response) {
+            if (response.data !== 200) {
+                $location.url('/connection-failed');
             }
-        })
-        .when('/daily-forecast/:id', {
-            templateUrl: 'daily-forecast/view.html'
-        })
-        .otherwise({
-            redirectTo: '/'
         });
-});
+    });
