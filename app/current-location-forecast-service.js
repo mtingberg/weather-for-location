@@ -3,7 +3,7 @@
 var angular = require('angular');
 
 module.exports = angular.module('app').factory('currentLocationForecastService',
-    function ($http, /*$interval, */locationService) {
+    function ($http, locationService) {
         var cachedWeatherForecastPromise,
             cachedWeatherForecast;
 
@@ -20,23 +20,6 @@ module.exports = angular.module('app').factory('currentLocationForecastService',
                 });
         });
 
-        /*
-                updateCachedWeatherForecasts();
-                $interval(updateCachedWeatherForecasts, 1000 * 60 * 10);
-
-                function updateCachedWeatherForecasts() {
-                    var cityIdPromise = locationService.getCurrentCityId();
-
-                    cachedWeatherForecastPromise = cityIdPromise.then(function (cityId) {
-                        return $http.get('/api/weather-forecasts/' + cityId);
-                    });
-
-                    cachedWeatherForecast = cachedWeatherForecastPromise.then(function (data) {
-                        return data;
-                    });
-                }
-
-        */
         return {
             forecastPromise: cachedWeatherForecastPromise,
             get: function () {
