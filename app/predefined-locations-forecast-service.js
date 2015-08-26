@@ -1,6 +1,7 @@
 'use strict';
 
-var angular = require('angular');
+var angular = require('angular'),
+    removeFailedLocationLookups = require('./remove-failed-location-lookups');
 
 module.exports = angular.module('app').factory('predefinedLocationsForecastService',
     function ($http) {
@@ -9,7 +10,7 @@ module.exports = angular.module('app').factory('predefinedLocationsForecastServi
 
         cachedWeatherForecastsPromise = $http.get('/api/forecast/predefined/location/all')
             .success(function (data) {
-                cachedWeatherForecasts = data;
+                cachedWeatherForecasts = removeFailedLocationLookups(data);
             })
             .error(function () {
                 console.error('Lookup of \'predefined locations forecast\' failed');
