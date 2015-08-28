@@ -17,10 +17,6 @@ module.exports = {
         var cityIds = createCityIdArray(forecastContainer),
             dailyForecastPromises = getDailyForecastsData(cityIds);
 
-        if (openWeatherMapAppId === 'demo') {
-            logger.info('openWeatherMapAppId === \'demo\'');
-        }
-
         return Promise.all(dailyForecastPromises).then(function (dailyForecasts) {
             dailyForecasts.forEach(function (elem) {
                 if (elem && elem.cod === '200') {
@@ -42,10 +38,6 @@ module.exports = {
                 id: cityId
             }],
             dailyForecastPromise = getDailyForecastsData(cityIds);
-
-        if (openWeatherMapAppId === 'demo') {
-            logger.info('openWeatherMapAppId === \'demo\'');
-        }
 
         return Promise.all(dailyForecastPromise).then(function (forecasts) {
             var forecast = forecasts[0];

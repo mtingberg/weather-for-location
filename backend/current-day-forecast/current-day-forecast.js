@@ -18,10 +18,6 @@ module.exports = {
         var cityIds = createCityIdArray(forecastContainer),
             currentDayForecastPromises = getCurrentDayForecastData(cityIds);
 
-        if (openWeatherMapAppId === 'demo') {
-            logger.info('openWeatherMapAppId === \'demo\'');
-        }
-
         return Promise.all(currentDayForecastPromises).then(function (currentDayForecasts) {
             currentDayForecasts.forEach(function (elem) {
                 if (elem && elem.cod === 200) {
@@ -46,10 +42,6 @@ module.exports = {
             }],
             ianaTimeZoneDBName = undefined,     // Value not used for current gps location
             currentDayForecastPromise = getCurrentDayForecastData(cityIds);
-
-        if (openWeatherMapAppId === 'demo') {
-            logger.info('openWeatherMapAppId === \'demo\'');
-        }
 
         return Promise.all(currentDayForecastPromise).then(function (forecasts) {
             var forecast = forecasts[0];
