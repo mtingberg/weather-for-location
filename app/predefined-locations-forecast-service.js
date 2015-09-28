@@ -9,10 +9,9 @@ module.exports = angular.module('app').factory('predefinedLocationsForecastServi
             cachedWeatherForecasts;
 
         cachedWeatherForecastsPromise = $http.get('/api/forecast/predefined/location/all')
-            .success(function (data) {
-                cachedWeatherForecasts = removeFailedLocationLookups(data);
-            })
-            .error(function () {
+            .then(function (forecasts) {
+                cachedWeatherForecasts = removeFailedLocationLookups(forecasts.data);
+            }, function () {
                 console.error('Lookup of \'predefined locations forecast\' failed');
             });
 
